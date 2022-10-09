@@ -6,13 +6,19 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 16:24:06 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/08 16:48:38 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/09 21:52:09 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *s, int c, unsigned int n)
+/*The memset() function fills the first n bytes of the memory area pointed to 
+by s with the constant byte c.
+The memset() function returns a pointer to the memory area s.*/
+
+#include "libft.h"
+
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int		count;
+	size_t	count;
 	char	*alias;
 
 	alias = s;

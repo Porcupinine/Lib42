@@ -6,9 +6,15 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 15:55:33 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/08 15:58:29 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/09 21:51:11 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*checks for any printable character including space.
+The values returned are nonzero if the character c falls into the tested class,
+and zero if not.*/
+
+#include "libft.h"
 
 int	ft_isprint(int c)
 {
