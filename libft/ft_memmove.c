@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 17:08:54 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/09 21:51:53 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/10 21:01:28 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	char		*alias_d;
 	const char	*alias_s;
 
-	count = 0;
+	count = ft_strlen(dest);
 	alias_d = dest;
 	alias_s = src;
 	while (count < n)
 	{
-		
+		alias_d[count] = alias_s[count];
+		count--;
 	}
+	return (dest);
 }

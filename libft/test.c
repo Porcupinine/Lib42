@@ -6,13 +6,18 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/09 21:52:58 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/10 21:21:03 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 #include <string.h>
+#include <ctype.h>
+
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define RESET "\33[0m"
 
 void	test_is_alpha(void)
 {
@@ -23,7 +28,7 @@ void	test_is_alpha(void)
 	{
 		int mine = ft_isalpha(i);
 		int lib = isalpha(i);
-		if(mine != lib)
+		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
 		{
 			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
 			fail = 1;
@@ -31,11 +36,11 @@ void	test_is_alpha(void)
 	}
 	if (fail == 1)
 	{
-		printf("Test ft_isapha failed!\n");
+		printf(RED "Test ft_isapha failed!\n" RESET);
 	}
 	else
 	{
-		printf("Test ft_isapha success!\n");
+		printf(GREEN "Test ft_isapha success!\n" RESET);
 	}
 }
 
@@ -48,7 +53,7 @@ void	test_is_ascii(void)
 	{
 		int mine = ft_isascii(i);
 		int lib = isascii(i);
-		if(mine != lib)
+		if((mine != 0 && lib == 0)|| (mine == 0 && lib !=0))
 		{
 			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
 			fail = 1;
@@ -56,16 +61,159 @@ void	test_is_ascii(void)
 	}
 	if (fail == 1)
 	{
-		printf("Test ft_isascii failed!\n");
+		printf(RED "Test ft_isascii failed!\n" RESET);
 	}
 	else
 	{
-		printf("Test ft_isapha success!\n");
+		printf(GREEN "Test ft_isascii success!\n" RESET);
 	}
+}
+
+void	test_is_alnum(void)
+{
+	printf("Testing ft_isalnum\n");
+	int	fail;
+	fail = 0;
+	for(int i = 0; i<1024; ++i)
+	{
+		int mine = ft_isalnum(i);
+		int lib = isalnum(i);
+		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
+		{
+			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
+			fail = 1;
+		}
+	}
+	if (fail == 1)
+	{
+		printf(RED "Test ft_isalnum failed!\n" RESET);
+	}
+	else
+	{
+		printf(GREEN "Test ft_isalnum success!\n" RESET);
+	}
+}
+
+void	test_is_digit(void)
+{
+	printf("Testing ft_isdigit\n");
+	int	fail;
+	fail = 0;
+	for(int i = 0; i<1024; ++i)
+	{
+		int mine = ft_isdigit(i);
+		int lib = isdigit(i);
+		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
+		{
+			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
+			fail = 1;
+		}
+	}
+	if (fail == 1)
+	{
+		printf(RED "Test ft_isdigit failed!\n" RESET);
+	}
+	else
+	{
+		printf(GREEN "Test ft_isdigit success!\n" RESET);
+	}
+}
+
+void	test_is_print(void)
+{
+	printf("Testing ft_isprint\n");
+	int	fail;
+	fail = 0;
+	for(int i = 0; i<1024; ++i)
+	{
+		int mine = ft_isprint(i);
+		int lib = isprint(i);
+		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
+		{
+			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
+			fail = 1;
+		}
+	}
+	if (fail == 1)
+	{
+		printf(RED "Test ft_isprint failed!\n" RESET);
+	}
+	else
+	{
+		printf(GREEN "Test ft_isprint success!\n" RESET);
+	}
+}
+
+void	test_ft_strlen(void)
+{
+	char s[100] = "This is just a test";
+	printf("Testing ft_strlen\n");
+	if (ft_strlen(s) == strlen(s))
+		printf(GREEN "Test ft_strlen sucsses!\n" RESET);
+	else 
+		{
+			printf(RED "Test ft_strlen failed!\n" RESET);
+		}
+}
+
+void	test_ft_memset(void)
+{
+	char smine[100] = "This is just a test \\o/ \n";
+	char slib[100] = "This is just a test \\o/ \n";
+	int n = 10;
+	int c = 68;
+	printf("Testing ft_memset\n");
+	if (strcmp(ft_memset(smine,c,n), memset(slib,c,n)) == 0)
+		printf(GREEN "Test ft_memset sucsses!\n" RESET);
+	else
+		printf(RED "Test ft_memset failed!\n" RESET);
+}
+
+void	test_ft_memmove(void)
+{
+	char sm[100] = "This is just a test \\o/ \n";
+	char sl[100] = "This is just a test \\o/ \n";
+	char dm[100] = "whatever";
+	char dl[100] = "whatever";
+	int n = 10;
+
+	char mine = ft_memmove(dm,sm,n);
+	char lib = memmove(dl,sl,n)
+	printf("Testing ft_memmove\n");
+	if (strcmp(mine, lib) == 0)
+		printf(GREEN "Test ft_memmove sucsses!\n" RESET);
+	else
+	{
+		printf(RED "Test ft_memmove failed!\n");
+		printf("Mine %s\n", mine);
+		printf("Lib %s\n", lib);
+	}
+}
+
+void	test_ft_strlcpy(void)
+{
+	char sm[100] = "This is a test!";
+	char dm[100] = "!tset a is sihT";
+	char sl[100] = "This is a test!";
+	char dl[100] = "!tset a is sihT";
+	int n = 15;
+
+	printf("Testing ft_strlcpy\n");
+	if (ft_strlcpy(dm, sm, n) == strlcpy(dl, sl, n))
+		printf(GREEN "Test ft_strlcpy sucsses!\n" RESET);
+	else
+		printf(RED "Test ft_strlcpy failed!\n" RESET);
 }
 
 int	main(void)
 {
 	test_is_alpha();
 	test_is_ascii();
+	test_is_alnum();
+	test_is_digit();
+	test_is_print();
+	test_ft_memset();
+	test_ft_strlen();
+	test_ft_strlcpy();
+	test_ft_memmove();
 }
