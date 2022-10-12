@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/10 20:05:14 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/10 22:49:06 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/12 19:53:39 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,7 @@
      length of the string they tried to createmake */
 #include "libft.h"
 
-size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize)
-{
-	int	len;
-	dstsize = 0;
-
-	len = (ft_strlen(src));
-	dst[len] = '\0';
-	len--;
-	while (len != 0)
-	{
-		dst[len] = src[len];
-		len--;
-          dstsize++;
-	}
-	return(ft_strlen(dst));
-}
+// size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize)
+// {
+// 	printf("Haro!!");
+// }

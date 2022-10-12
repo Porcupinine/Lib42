@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/11 00:41:16 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/12 21:13:35 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,41 @@ void	test_ft_memmove(void)
 // 		printf(RED "Test ft_strlcpy failed!\n" RESET);
 // }
 
+void test_ft_toupper(void)
+{
+	int count = 0;
+	char str [] = "this is a test! Mar Que Carai\n";
+	printf("testing ft_toupper");
+	while (str[count] != '\0')
+	{
+		printf("%c", str[count]);
+		str[count] = ft_toupper(str[count]);
+		count++;
+	}
+		printf("%s", str);
+}
+
+void test_ft_tolower(void)
+{
+	int count = 0;
+	char str [] = "this is a test! Mar Que Carai\n";
+	printf("Testing ft_tolower");
+	while (str[count] != '\0')
+	{
+		printf("%c", str[count]);
+		str[count] = ft_tolower(str[count]);
+		count++;
+	}
+		printf("%s", str);
+}
+
+void test_ft_strchr(void)
+{
+	printf(RED "Testing ft_strchr \n WOOOORRK BITCH!" RESET);
+	char teste [] = "Testando 104 strch\n work more";
+	printf("%s\n", ft_strchr(teste, 104));
+}
+
 int	main(void)
 {
 	test_is_alpha();
@@ -230,4 +265,7 @@ int	main(void)
 	test_ft_strlen();
 	// test_ft_strlcpy();
 	test_ft_memmove();
+	test_ft_toupper();
+	test_ft_tolower();
+	test_ft_strchr();
 }
