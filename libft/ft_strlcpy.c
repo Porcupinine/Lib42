@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/10 20:05:14 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/10 21:12:14 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/10 22:49:06 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize)
 {
 	int	len;
-	dstsize =0;
+	dstsize = 0;
 
 	len = (ft_strlen(src));
 	dst[len] = '\0';
@@ -45,6 +45,7 @@ size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize)
 	{
 		dst[len] = src[len];
 		len--;
+          dstsize++;
 	}
 	return(ft_strlen(dst));
 }

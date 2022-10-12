@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/10 21:21:03 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/11 00:41:16 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	test_is_alnum(void)
 	printf("Testing ft_isalnum\n");
 	int	fail;
 	fail = 0;
-	for(int i = 0; i<1024; ++i)
+	for(int i = 0; i<128; ++i)
 	{
 		int mine = ft_isalnum(i);
 		int lib = isalnum(i);
@@ -158,8 +158,8 @@ void	test_ft_strlen(void)
 
 void	test_ft_memset(void)
 {
-	char smine[100] = "This is just a test \\o/ \n";
-	char slib[100] = "This is just a test \\o/ \n";
+	char smine[100] = "This is just a test \\o/";
+	char slib[100] = "This is just a test \\o/";
 	int n = 10;
 	int c = 68;
 	printf("Testing ft_memset\n");
@@ -169,41 +169,55 @@ void	test_ft_memset(void)
 		printf(RED "Test ft_memset failed!\n" RESET);
 }
 
-void	test_ft_memmove(void)
+void	sub_test_memove(char* mine, char* lib, char* d_min, char* d_lib, size_t n)
 {
-	char sm[100] = "This is just a test \\o/ \n";
-	char sl[100] = "This is just a test \\o/ \n";
-	char dm[100] = "whatever";
-	char dl[100] = "whatever";
-	int n = 10;
-
-	char mine = ft_memmove(dm,sm,n);
-	char lib = memmove(dl,sl,n)
+	char* res_mine = ft_memmove(d_min, mine, n);
+	char* res_lib = memmove(d_lib, lib, n);
 	printf("Testing ft_memmove\n");
-	if (strcmp(mine, lib) == 0)
+	if (strcmp(res_mine, res_lib) == 0)
+	{
 		printf(GREEN "Test ft_memmove sucsses!\n" RESET);
+	}
 	else
 	{
 		printf(RED "Test ft_memmove failed!\n");
-		printf("Mine %s\n", mine);
-		printf("Lib %s\n", lib);
+		printf("Mine: %s\n", mine);
+		printf("Lib: %s\n", lib);
 	}
 }
 
-void	test_ft_strlcpy(void)
+void	test_ft_memmove(void)
 {
-	char sm[100] = "This is a test!";
-	char dm[100] = "!tset a is sihT";
-	char sl[100] = "This is a test!";
-	char dl[100] = "!tset a is sihT";
-	int n = 15;
+	char sm[] = "This is just a test \\o/";
+	char sl[] = "This is just a test \\o/";
+	char dm[] = "whatever123456";
+	char dl[] = "whatever123456";
+	int n = 10;
+	sub_test_memove(sm, sl, dm, dl, n);
 
-	printf("Testing ft_strlcpy\n");
-	if (ft_strlcpy(dm, sm, n) == strlcpy(dl, sl, n))
-		printf(GREEN "Test ft_strlcpy sucsses!\n" RESET);
-	else
-		printf(RED "Test ft_strlcpy failed!\n" RESET);
+	// test strings with overlap
+	char sm2[] = "This is an anwesome string";
+	char sl2[] = "This is an anwesome string";
+	char* dm2 = sm2 + 5; // start on "is"
+	char* dl2 = sl2 + 5;  // start on "is"
+	sub_test_memove(sm2, sl2, dm2, dl2, n);
+
 }
+
+// void	test_ft_strlcpy(void)
+// {
+// 	char sm[100] = "This is a test!";
+// 	char dm[100] = "!tset a is sihT";
+// 	char sl[100] = "This is a test!";
+// 	char dl[100] = "!tset a is sihT";
+// 	int n = 15;
+
+// 	printf("Testing ft_strlcpy\n");
+// 	if (ft_strlcpy(dm, sm, n) == strlcpy(dl, sl, n))
+// 		printf(GREEN "Test ft_strlcpy sucsses!\n" RESET);
+// 	else
+// 		printf(RED "Test ft_strlcpy failed!\n" RESET);
+// }
 
 int	main(void)
 {
@@ -214,6 +228,6 @@ int	main(void)
 	test_is_print();
 	test_ft_memset();
 	test_ft_strlen();
-	test_ft_strlcpy();
+	// test_ft_strlcpy();
 	test_ft_memmove();
 }

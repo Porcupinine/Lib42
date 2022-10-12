@@ -1,0 +1,9 @@
+{
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/lplacerda/CODAM/Codam/libft",
+			"binaryPath": "/home/lplacerda/CODAM/Codam/libft/testall",
+			"binaryArgs": []
+		}
+	]
+}
