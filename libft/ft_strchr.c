@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 20:25:55 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 21:03:56 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/12 18:41:42 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ char	*ft_strchr(const char *s, int c)
 	count = 0;
 	alias = (char *) s;
 	len = ft_strlen(s);
-	while (alias[count] < (len + 1))
+	while (count < (len + 1))
 	{
 		if (alias[count] != c)
 			count++;
 		else if (alias[count] == c)
-			return (alias);
+			return (alias + count);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 21:13:35 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/12 18:43:18 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,9 +249,11 @@ void test_ft_tolower(void)
 
 void test_ft_strchr(void)
 {
-	printf(RED "Testing ft_strchr \n WOOOORRK BITCH!" RESET);
-	char teste [] = "Testando 104 strch\n work more";
-	printf("%s\n", ft_strchr(teste, 104));
+	printf(RED "Testing ft_strchr \n" RESET);
+	char teste [] = "abcde";
+	if (ft_strchr(teste, 'a') != strchr(teste, 'a') printf(RED "Not matching"));
+	printf("%p\n", ft_strchr(teste, '\0'));
+	printf("%p\n", strchr(teste, '\0'));
 }
 
 int	main(void)

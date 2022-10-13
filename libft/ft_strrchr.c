@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 21:15:10 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 21:20:28 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/12 18:24:40 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		count;
 	char	*alias;
 	int		len;
 

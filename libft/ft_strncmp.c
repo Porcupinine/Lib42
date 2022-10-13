@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 21:24:49 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 21:38:10 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/12 18:24:14 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 
 #include "libft.h"
 
-int	ft_ctrncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	char	*alias1;
 	char	*alias2;
-	int		count;
+	size_t	count;
 
 	alias1 = (char *) s1;
 	alias2 = (char *) s2;
@@ -33,6 +33,7 @@ int	ft_ctrncmp(const char *s1, const char *s2, size_t n)
 		if (alias1[count] == alias2[count])
 			count++;
 		else
-			return (alias1 + alias2);
+			return (0);
 	}
+	return (1);
 }
