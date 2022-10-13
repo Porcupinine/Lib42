@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 18:43:18 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/13 20:55:54 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define RESET "\33[0m"
+
+char string_test1 [] = "Does this work?";
+char string_test2 [] = "Don't know...";
+int n = 20;
+char char_test = 'c';
 
 void	test_is_alpha(void)
 {
@@ -222,38 +227,90 @@ void	test_ft_memmove(void)
 void test_ft_toupper(void)
 {
 	int count = 0;
-	char str [] = "this is a test! Mar Que Carai\n";
-	printf("testing ft_toupper");
-	while (str[count] != '\0')
+	// char str [] = "this is a test! Mar Que Carai\n";
+	printf("testing ft_toupper\n");
+	while (string_test1[count] != '\0')
 	{
-		printf("%c", str[count]);
-		str[count] = ft_toupper(str[count]);
+		printf("%c", string_test1[count]);
+		string_test1[count] = ft_toupper(string_test1[count]);
 		count++;
 	}
-		printf("%s", str);
+		printf("%s\n", string_test1);
 }
 
 void test_ft_tolower(void)
 {
 	int count = 0;
-	char str [] = "this is a test! Mar Que Carai\n";
-	printf("Testing ft_tolower");
-	while (str[count] != '\0')
+	// char str [] = "this is a test! Mar Que Carai\n";
+	printf("Testing ft_tolower\n");
+	while (string_test1[count] != '\0')
 	{
-		printf("%c", str[count]);
-		str[count] = ft_tolower(str[count]);
+		printf("%c", string_test1[count]);
+		string_test1[count] = ft_tolower(string_test1[count]);
 		count++;
 	}
-		printf("%s", str);
+		printf("%s\n", string_test1);
 }
 
 void test_ft_strchr(void)
 {
-	printf(RED "Testing ft_strchr \n" RESET);
-	char teste [] = "abcde";
-	if (ft_strchr(teste, 'a') != strchr(teste, 'a') printf(RED "Not matching"));
-	printf("%p\n", ft_strchr(teste, '\0'));
-	printf("%p\n", strchr(teste, '\0'));
+	printf("Testing ft_strchr \n" );
+	// char tes/÷te [] = "abcde÷÷";
+	if (ft_strchr(string_test1, char_test) != strchr(string_test1, char_test))
+		printf(RED "Test ft_strchr Failed!\n" RESET);
+	else
+		printf(GREEN "Test ft_strchr sucsses!\n" RESET);
+	// printf("%p\n", ft_strchr(teste, '\0'));
+	// printf("%p\n", strchr(teste, '\0'));
+}
+
+void test_ft_strrchr(void)
+{
+	printf("Testing ft_strrchr \n");
+	// char teste [] = "testa";
+	if (ft_strrchr(string_test1, char_test) != strrchr(string_test1, char_test))
+		printf(RED "Test ft_strrchr Failed!\n"RESET);
+	else 
+		printf(GREEN "Test ft_strrchr sucsses!\n"RESET);
+}
+
+void test_ft_strncmp(void)
+{
+	printf("Testing ft_strncmp! \n");
+	if (strncmp(string_test1, string_test2, n) != ft_strncmp(string_test1, string_test2, n))
+	{
+		printf(RED"Test ft_strncmp Failed!\n"RESET);
+		printf("Mine: %d \n Lib: %d\n",ft_strncmp(string_test1, string_test2, n), strncmp(string_test1, string_test2, n));
+	}
+	else 
+		printf(GREEN"Test ft_strncmp sucsses!\n"RESET);	
+}
+
+void test_ft_memcmp(void)
+{
+	printf("Testing ft_memcmp! \n");
+	if (memcmp(string_test1, string_test2, n) != ft_memcmp(string_test1, string_test2, n))
+	{
+		printf(RED"Test ft_memcmp Failed!\n"RESET);
+		printf("Mine: %d \n Lib: %d\n",ft_memcmp(string_test1, string_test2, n), memcmp(string_test1, string_test2, n));
+	}
+	else 
+		printf(GREEN"Test ft_memcmp sucsses!\n"RESET);	
+}
+
+void test_ft_strlcat(void)
+{
+	printf("Testing ft_strlcat\n");
+	char strdm [100] = "bo";
+	char strsm [] = "funfou";
+	char strdl [100] = "bo";
+	char strsl [] = "funfou";
+	
+	if (ft_strlcat(strdm, strsm, 4) != strlcat(strdl, strsl, 4))
+		printf(RED"Test ft_strlcat Failed!\n"RESET);
+	else
+		printf(GREEN"Test ft_strlcat sucsses!\n"RESET);	
+	// printf("Mine: %zu\n Lib: %lu",ft_strlcat(strdm, strsm, 20), strlcat(strdl, strsl, 20));
 }
 
 int	main(void)
@@ -270,4 +327,8 @@ int	main(void)
 	test_ft_toupper();
 	test_ft_tolower();
 	test_ft_strchr();
+	test_ft_strrchr();
+	test_ft_strncmp();
+	test_ft_memcmp();
+	test_ft_strlcat();
 }
