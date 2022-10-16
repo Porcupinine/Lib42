@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/10 20:05:14 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/13 21:10:53 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/16 22:34:55 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,25 @@
      strlcpy() copies up to dstsize - 1 characters from the string src to dst,
      NUL-terminating the result if dstsize is not 0.
 
-     strlcat() appends string src to the end of dst.  It will append at most
-     dstsize - strlen(dst) - 1 characters.  It will then NUL-terminate, unless
-     dstsize is 0 or the original dst string was longer than dstsize (in prac-
-     tice this should not happen as it means that either dstsize is incorrect
-     or that dst is not a proper string).
-
      If the src and dst strings overlap, the behavior is undefined.
-	 return the total
-     length of the string they tried to createmake */
+	 return the total length of the string they tried to createmake */
+
 #include "libft.h"
 
 size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize)
 {
-	printf("Haro!!");
+	size_t	count;
+	char	*alias;
+
+	alias = (char *) src;
+	count = 0;
+	if (dstsize == 0)
+		return (0);
+	while (count < (dstsize -1) && alias[count] != '\0')
+	{
+		dst[count] = alias[count];
+		count++;
+	}
+	dst[count] = '\0';
+	return (ft_strlen(src));
 }
