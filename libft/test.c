@@ -6,13 +6,14 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/16 22:26:49 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/17 17:21:10 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 #include "libft.h"
 
@@ -369,7 +370,8 @@ void test_ft_strlcat(void)
 	// printf("Mine: %zu\n Lib: %lu",ft_strlcat(strdm, strsm, 20), strlcat(strdl, strsl, 20));
 }
 
-void sub_compare_strnstr(const char* hay, const char* need, size_t num_bytes) {
+void sub_compare_strnstr(const char* hay, const char* need, size_t num_bytes) 
+{
 	char* c1 = ft_strnstr(hay, need, 5);
 	char* c2 = strnstr(hay, need, 5);
 	if (c1 == c2)
@@ -388,6 +390,108 @@ void test_ft_strnstr(void)
 	sub_compare_strnstr("", "TE", 2);
 	sub_compare_strnstr("", "", 10);
 }
+
+void sub_compare_atoi(const char *nptr)
+{
+	int n1 = atoi(nptr);
+	int n2 = ft_atoi(nptr);
+	if (n1 == n2)
+	{
+		printf(GREEN"Test ft_atoi sucsses!\n"RESET);
+		// printf("%s\n", nptr);
+		// printf(GREEN"Mine: %d \nLib: %d\n" RESET, n2, n1);
+	}
+	else
+	{
+		printf("%s\n", nptr);
+		printf(RED"Test ft_atoi Failed\n" RESET);
+		printf(RED"Mine: %d \nLib: %d\n" RESET, n2, n1);
+	}
+}
+
+void test_ft_atoi(void)
+{
+	printf("Testing ft_atoi!\n");
+	sub_compare_atoi("    -+--+154996asdf");
+	sub_compare_atoi("  +-45ede85");
+	sub_compare_atoi("19865198efef54");
+	sub_compare_atoi(" 1238");
+	sub_compare_atoi("-47765846");
+	sub_compare_atoi("--54984654");
+	sub_compare_atoi("+6464");
+	sub_compare_atoi("++54884");
+	sub_compare_atoi(" -8797");
+	sub_compare_atoi("8797");
+	sub_compare_atoi(" +8797");
+	sub_compare_atoi("-8797");
+	sub_compare_atoi("         999");
+	sub_compare_atoi("    97");
+	sub_compare_atoi("    -797");
+	sub_compare_atoi("    +8797");
+	sub_compare_atoi("    +-35464");
+	sub_compare_atoi("    -++3549");
+	sub_compare_atoi("    -  697");
+	sub_compare_atoi("    +--697");
+}
+
+void sub_compare_strdup(const char *s1)
+{
+	char *n1 = strdup(s1);
+	char *n2 = ft_strdup(s1);
+	if (n1 == n2)
+	{
+		printf(GREEN"Test ft_strdup sucsses!\n"RESET);
+		// printf("%s\n", nptr);
+		// printf(GREEN"Mine: %d \nLib: %d\n" RESET, n2, n1);
+	}
+	else
+	{
+		printf("%s\n", s1);
+		printf(RED"Test ft_strdup Failed\n" RESET);
+		printf(RED"Mine: %s \nLib: %s\n" RESET, n2, n1);
+	}
+}
+
+void	test_ft_strdup(void)
+{
+	sub_compare_strdup("TESTANDO");
+	sub_compare_strdup("howf546  wervw4\n");
+}
+
+void	test_ft_substr(void)
+{
+	char *str = "Testando!";
+	printf("Testing ft_substr!\n");
+	printf("%s\n", str);
+	printf("%s\n",ft_substr(str, 5, 3));
+}
+
+void test_ft_strjoin(void)
+{
+	char *s1 = "testa ";
+	char *s2 = "Testando";
+	printf("Testing ft_strjoin!\n");
+	printf("s1: %s\ns2: %s\n", s1, s2);
+	printf("%s\n",ft_strjoin(s1, s2));
+}
+
+void test_ft_strtrim(void)
+{
+	char *s1 = "testabcdtest";
+	char *s2 = "te";
+	printf("Testing ft_strtrim!\n");
+	printf("s1: %s\ns2: %s\n", s1, s2);
+	printf("%s\n",ft_strtrim(s1, s2));
+}
+
+void test_ft_putendl_fd(void)
+{
+	ft_putendl_fd("Testando", 1);
+	ft_putendl_fd("a", 1);
+	ft_putendl_fd("s", 1);
+	ft_putendl_fd("d", 1);
+}
+
 int	main(void)
 {
 	test_is_alpha();
@@ -426,9 +530,21 @@ int	main(void)
 		printf("\n");
 	test_ft_strnstr();
 		printf("\n");
+	test_ft_atoi();
+		printf("\n");
+	// test_ft_calloc();
+		printf("\n");
+	// test_ft_strdup();
+		printf("\n");
+	test_ft_substr();
+		printf("\n");
+	test_ft_strjoin();
+		printf("\n");
+	// test_ft_strtrim();
+	test_ft_putendl_fd();
 }
 
-// int main(void)
+// int main4(void)
 // {
 // 	char str1 [11] = "abcdef";
 // 	char str2 [4] = "xyz";
