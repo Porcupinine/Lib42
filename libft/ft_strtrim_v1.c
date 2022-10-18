@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 15:01:52 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/18 18:56:18 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/17 18:14:57 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,36 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		count_start;
 	char	*trimmed;
 	int		count_end;
-	size_t	trimlen;
+	int		count;
+	int		count_set;
 
 	count_start = 0;
 	count_end = ft_strlen(s1);
-	trimlen = 0;
-	while (ft_strchr(set, s1[count_start]) != 0)
-	{
-		count_start++;
-	}
-	while (ft_strrchr(set, s1[count_end]) != 0)
-	{
-		count_end--;
-	}
-	trimlen = count_end - count_start;
-	trimmed = malloc((trimlen +1) * sizeof(char));
+	count = 0;
+	count_set = ft_strlen(set);
+	trimmed = malloc(ft_strlen(s1) * sizeof(char));
 	if (trimmed == NULL)
 		return (NULL);
-	ft_substr(trimmed, count_start, (trimlen + 1));
+	while (ft_strchr(s1 + count, set[count_set]) != 0 && count_set != 0)
+	{
+		count_start++;
+		count++;
+		count_set--;
+	}
+	count = count_end;
+	count_set = 0;
+	while (ft_strrchr(s1 + count, set[count_set]) != 0 && count_set != 0)
+	{
+		count_end--;
+		count--;
+		count_set--;;
+	}
+	count = 0;
+	while (count_start != (count_end))
+	{
+		trimmed[count] = s1[count_start];
+		count_start++;
+		count++;
+	}
 	return (trimmed);
 }

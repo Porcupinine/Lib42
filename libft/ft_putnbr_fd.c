@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:22:11 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/17 17:24:16 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/18 18:49:14 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ fd: The file descriptor on which to write.*/
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
-{
+// void	ft_putnbr_fd(int n, int fd)
+// {
 	
-}
+// }

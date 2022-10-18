@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/17 17:21:10 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/18 18:54:29 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -438,7 +438,7 @@ void sub_compare_strdup(const char *s1)
 {
 	char *n1 = strdup(s1);
 	char *n2 = ft_strdup(s1);
-	if (n1 == n2)
+	if (strcmp(n1, n2))
 	{
 		printf(GREEN"Test ft_strdup sucsses!\n"RESET);
 		// printf("%s\n", nptr);
@@ -534,13 +534,14 @@ int	main(void)
 		printf("\n");
 	// test_ft_calloc();
 		printf("\n");
-	// test_ft_strdup();
+	test_ft_strdup();
 		printf("\n");
 	test_ft_substr();
 		printf("\n");
 	test_ft_strjoin();
 		printf("\n");
-	// test_ft_strtrim();
+	test_ft_strtrim();
+		printf("\n");
 	test_ft_putendl_fd();
 }
 
