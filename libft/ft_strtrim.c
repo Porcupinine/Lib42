@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 15:01:52 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/18 18:56:18 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/18 19:15:05 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,23 @@ Retur The trimmed string or NULL if the allocation fails.*/
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		count_start;
+	size_t	count_start;
 	char	*trimmed;
-	int		count_end;
+	size_t	count_end;
 	size_t	trimlen;
 
 	count_start = 0;
 	count_end = ft_strlen(s1);
 	trimlen = 0;
 	while (ft_strchr(set, s1[count_start]) != 0)
-	{
 		count_start++;
-	}
 	while (ft_strrchr(set, s1[count_end]) != 0)
-	{
 		count_end--;
-	}
 	trimlen = count_end - count_start;
+	printf("count_ strat: %zu \ncount_end: %zu \ntrimlen: %zu\n", count_start, count_end, trimlen);
 	trimmed = malloc((trimlen +1) * sizeof(char));
 	if (trimmed == NULL)
 		return (NULL);
-	ft_substr(trimmed, count_start, (trimlen + 1));
+	trimmed = ft_substr(s1, count_start, (trimlen + 1));
 	return (trimmed);
 }

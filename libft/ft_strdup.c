@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 13:46:12 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/18 18:53:08 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/18 19:22:12 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char	*mall;
+	char	*dup;
 	int		count;
 
 	count = 0;
-	mall = malloc(ft_strlen(s1) * (sizeof(char)));
-	if (mall == NULL)
+	dup = malloc(ft_strlen(s1) * (sizeof(char)));
+	if (dup == NULL)
 		return (NULL);
 	while (s1[count] != '\0')
 	{
-		mall[count] = s1[count];
+		dup[count] = s1[count];
 		count++;
 	}
-	
-	return (mall);
+	return (dup);
 }
