@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/20 13:59:41 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/20 16:40:26 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/20 20:08:46 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ NULL if the allocation fails.*/
 #include "libft.h"
 #include <stdio.h>
 
-int	count_words(char *s, char c)
+int	count_words(char const *s, char c)
 {
 	int		count;
 	int		count_words;
 
 	count = 0;
 	count_words = 0;
-	while (s [count] != '\0')
+	while (s[count] != '\0')
 	{
-		while (s[count] != c)
+		while (s[count] != c && s[count] != '\0')
 			count++;
 		count_words++;
-		while (s[count] == c)
+		while (s[count] == c && s[count] != '\0')
 			count++;
 	}
 	return (count_words);
@@ -44,13 +44,13 @@ char	*get_string(char *s, char c, int *count_str)
 	char	*str;
 
 	count = *count_str;
-	while (s[*count_str] != c)
+	while (s[*count_str] != c && s[*count_str] != '\0')
 	{
-		count_str++;
+		(*count_str)++;
 	}
 	str = ft_substr(s, count, (*count_str - count));
 	while (s[*count_str] == c)
-		count_str++;
+		(*count_str)++;
 	return (str);
 }
 
@@ -64,7 +64,7 @@ char	**ft_split(char const *s, char c)
 
 	count_str = 0;
 	count_arr = 0;
-	words = count_words((char *)s, c);
+	words = count_words(s, c);
 	arr = calloc((words + 1), sizeof(char *));
 	while (count_arr < (words +1))
 	{
@@ -72,7 +72,6 @@ char	**ft_split(char const *s, char c)
 		arr[count_arr] = calloc(ft_strlen(temp_str + 1), sizeof(char));
 		arr[count_arr] = ft_strdup(temp_str);
 		count_arr++;
-		free(temp_str);
 	}
 	arr[count_arr] = NULL;
 	return (arr);

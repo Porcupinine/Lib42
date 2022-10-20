@@ -1,21 +1,19 @@
 {
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: gcc-9 arquivo de build ativo",
-            "command": "/usr/bin/gcc-9",
-            "args": [],
+            "type": "shell",
+            "label": "Build Libft",
+            "command": "make",
+            "args": [
+                "test"
+            ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "Tarefa gerada pelo Depurador."
+            "group": "build"
         }
     ],
     "version": "2.0.0"

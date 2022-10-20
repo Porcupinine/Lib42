@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/20 16:49:20 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/20 20:26:33 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,7 +377,10 @@ void sub_compare_strnstr(const char* hay, const char* need, size_t num_bytes)
 	if (c1 == c2)
 		printf(GREEN"Test ft_strnstr sucsses!\n"RESET);
 	else
+	{
 		printf(RED"Test ft_strnstrn Failed\n" RESET);
+		printf("%p\n%p\n", c1, c2);
+	}
 }
 
 void test_ft_strnstr(void)
@@ -494,15 +497,21 @@ void test_ft_putendl_fd(void)
 
 void test_ft_split(void)
 {
-	char str[100] = "Testando   se funciona direito";
+	char const str[] = "Testando   se funciona direito";
 	char c = ' ';
 	char **test = ft_split(str, c);
 	int count = 0;
 
-	while (test[count] != '\0')
+	while (test[count] != NULL)
 	{
-		printf("%s", test[count]);
+		printf("%s\n", test[count]);
 		count++;
+	}
+	count--;
+	while(count != 0)
+	{
+		free(test[count]);
+		count--;
 	}
 	free(test);
 
@@ -571,4 +580,14 @@ int	main(void)
 
 // 	strlcpy(str1, str2, 1000);
 // 	printf("%s\n",str1);
+// }
+
+// int main(void)
+// {
+// 	int x = 10;
+// 	int *ptr = &x;
+
+// 	*ptr++;
+
+// 	printf("pontei %d \n", *ptr);
 // }
