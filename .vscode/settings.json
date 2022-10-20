@@ -1,0 +1,7 @@
+{
+	"makefile.makePath": "/urs/bin/make",
+	"makefile.configurations": [
+	
+	],
+	"C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
+}
