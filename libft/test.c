@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/18 19:08:55 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/20 16:49:20 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -492,6 +492,23 @@ void test_ft_putendl_fd(void)
 	ft_putendl_fd("d", 1);
 }
 
+void test_ft_split(void)
+{
+	char str[100] = "Testando   se funciona direito";
+	char c = ' ';
+	char **test = ft_split(str, c);
+	int count = 0;
+
+	while (test[count] != '\0')
+	{
+		printf("%s", test[count]);
+		count++;
+	}
+	free(test);
+
+}
+
+
 int	main(void)
 {
 	test_is_alpha();
@@ -543,6 +560,8 @@ int	main(void)
 	test_ft_strtrim();
 		printf("\n");
 	test_ft_putendl_fd();
+		printf("\n");
+	test_ft_split();
 }
 
 // int main4(void)
