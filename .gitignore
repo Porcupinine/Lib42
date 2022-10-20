@@ -1,1 +1,4 @@
 libft/*.o
+libft/*.a
+libft/build
+libft/testall

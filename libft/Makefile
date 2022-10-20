@@ -10,6 +10,7 @@ ft_isdigit.c \
 ft_isprint.c \
 ft_itoa.c \
 ft_memcmp.c \
+ft_memcpy.c \
 ft_memmove.c \
 ft_memset.c \
 ft_putchar_fd.c \
@@ -25,10 +26,15 @@ ft_strlcpy.c \
 ft_strlen.c \
 ft_strncmp.c \
 ft_strnstr.c \
+ft_strrchr.c \
 ft_strtrim.c \
 ft_substr.c \
 ft_tolower.c \
 ft_toupper.c 
+
+OBJS_DIR = build/
+OBJS = $(SRC:.c=.o)
+OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
 CC=gcc
 CFLAGS += -g -Wall -Werror -Wextra 
@@ -41,19 +47,26 @@ endif
 $(OBJS_DIR)%.o : %.c libft.h
 	@mkdir -p $(OBJS_DIR)
 	@echo "Compiling: $<"
-	$(CC) $(CC_FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 
-fts:
-	$(CC) -c ft_*.c $(CFLAGS)
+$(NAME) : $(OBJECTS_PREFIXED)
+	@ar r $(NAME) $(OBJECTS_PREFIXED)
+	@echo "Libft build!"
+
+all: $(NAME)
 
 clean:
-	rm *.o libft.a testall
+	rm -rf $(OBJECTS_PREFIXED)
 
-test: libft
+fclean:
+	rm -rf $(NAME)
+
+clean_all: clean fclean
+	rm testall test.o
+
+test: $(NAME)
 	echo $(UNAME_S)
 	$(CC) -c test.c
-	$(CC) -o  testall test.o libft.a $(LDLIBS)
+	$(CC) -o testall test.o $(NAME) $(LDLIBS)
 
-libft: fts
-	ar -rcs libft.a ft_*.o
