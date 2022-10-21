@@ -8,7 +8,7 @@
                 "test"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/Users/lpraca-l/Documents/CodamGit/libft"
             },
             "problemMatcher": [
                 "$gcc"

@@ -1,12 +1,14 @@
 {
 	"makefile.launchConfigurations": [
 		{
-			"cwd": "/Users/lpraca-l/Documents/CodamGit/libft",
-			"binaryPath": "/Users/lpraca-l/Documents/CodamGit/libft/testall",
-			"binaryArgs": []
+			"cwd": "${workspaceFolder}/Users/lpraca-l/Documents/CodamGit/libft",
+			"binaryPath": "${workspaceFolder}/Users/lpraca-l/Documents/CodamGit/libft/testall",
+			"binaryArgs": [],
+			"sourceMap": { ".": "${workspaceFolder}/Users/lpraca-l/Documents/CodamGit/libft"
+
 		}
 	],
-	"makefile.makefilePath": "/Users/lpraca-l/Documents/CodamGit/libft/Makefile",
+	"makefile.makefilePath": "${workspaceFolder}/Users/lpraca-l/Documents/CodamGit/libft/Makefile",
 	"makefile.makePath": "/usr/bin/make"
 }
 // {

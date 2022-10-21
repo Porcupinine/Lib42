@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 19:58:23 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 15:19:54 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 17:42:13 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,24 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	count_dst;
 	size_t	count_src;
+	size_t	dst_len;
+	char	*str_src;
 
 	count_src = 0;
 	count_dst = 0;
-	while (dst[count_dst] != '\0' && count_dst < dstsize)
+	dst_len = ft_strlen(dst);
+	str_src = (char *) src;
+	if (dstsize <= dst_len)
+		return (ft_strlen(str_src) + dstsize);
+	while (dst[count_dst] != '\0')
 		count_dst++;
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	while (src[count_src] != '\0')
+	while (str_src[count_src] != '\0' && count_src < (dstsize - dst_len - 1))
 	{
-		dst[count_dst] = src[count_src];
+		dst[count_dst] = str_src[count_src];
 		count_dst++;
 		count_src++;
 	}
-	dst[count_dst] = '\0';
-	return (count_dst);
+	if (dstsize != 0 || dst_len > dstsize)
+		dst[count_dst] = '\0';
+	return (dst_len + ft_strlen(src));
 }

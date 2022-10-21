@@ -37,7 +37,7 @@ OBJS = $(SRC:.c=.o)
 OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
 CC=gcc
-CFLAGS += -g -Wall -Werror -Wextra 
+CFLAGS += -g -Wall -Werror -Wextra -O0
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
