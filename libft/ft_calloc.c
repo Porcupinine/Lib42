@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 12:53:41 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/17 14:19:42 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 13:32:33 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 	call = malloc(count * size);
 	if (call == NULL)
-		return (NULL);
+		return (call);
 	ft_bzero(call, count);
 	return (call);
 }

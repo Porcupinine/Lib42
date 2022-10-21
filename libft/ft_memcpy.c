@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 16:58:56 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/15 12:20:44 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 10:45:31 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	count = 0;
 	alias_d = dest;
 	alias_s = src;
-	while (alias_d[count] != '\0' && alias_s[count] != '\0' && count < n)
+	if (alias_d == NULL && alias_s == NULL)
+		return (0);
+	while (count < n)
 	{
 		alias_d[count] = alias_s[count];
 		count++;

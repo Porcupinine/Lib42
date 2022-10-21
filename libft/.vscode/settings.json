@@ -1,11 +1,22 @@
 {
 	"makefile.launchConfigurations": [
 		{
-			"cwd": "/home/lplacerda/CODAM/Codam/libft",
-			"binaryPath": "/home/lplacerda/CODAM/Codam/libft/testall",
+			"cwd": "/Users/lpraca-l/Documents/CodamGit/libft",
+			"binaryPath": "/Users/lpraca-l/Documents/CodamGit/libft/testall",
 			"binaryArgs": []
 		}
 	],
-	"makefile.makefilePath": "/home/lplacerda/CODAM/Codam/libft/Makefile",
+	"makefile.makefilePath": "/Users/lpraca-l/Documents/CodamGit/libft/Makefile",
 	"makefile.makePath": "/usr/bin/make"
 }
+// {
+// 	"makefile.launchConfigurations": [
+// 		{
+// 			"cwd": "/home/lplacerda/CODAM/Codam/libft",
+// 			"binaryPath": "/home/lplacerda/CODAM/Codam/libft/testall",
+// 			"binaryArgs": []
+// 		}
+// 	],
+// 	"makefile.makefilePath": "/home/lplacerda/CODAM/Codam/libft/Makefile",
+// 	"makefile.makePath": "/usr/bin/make"
+// }

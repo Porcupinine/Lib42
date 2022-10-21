@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/20 13:59:41 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/20 20:08:46 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 14:19:03 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ char	**ft_split(char const *s, char c)
 	while (count_arr < (words +1))
 	{
 		temp_str = get_string((char *)s, c, &count_str);
-		arr[count_arr] = calloc(ft_strlen(temp_str + 1), sizeof(char));
 		arr[count_arr] = ft_strdup(temp_str);
 		count_arr++;
+		free(temp_str);
 	}
 	arr[count_arr] = NULL;
 	return (arr);

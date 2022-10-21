@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/20 20:26:33 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 14:36:33 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char* g_string_test11;
 char* g_string_test22;
 char* g_haystack;
 char* g_needle;
-int g_n = 2;
+int g_n = 0;
 char g_char_test = 'c';
 
 void init_test_data() 
@@ -57,15 +57,44 @@ void clear_test_data()
 	free(g_needle);
 }
 
+void	sub_test_memcpy (char* mine, char* lib, char* d_min, char* d_lib, size_t n)
+{
+	char* res_mine = ft_memcpy(d_min, mine, n);
+	char* res_lib = memcpy(d_lib, lib, n);
+	printf("Testing ft_memcpy\n");
+	if (strcmp(res_mine, res_lib) == 0)
+	{
+		printf(GREEN "Test ft_memcpy sucsses!\n" RESET);
+	}
+	else
+	{
+		printf(RED "Test ft_memcpy failed!\n" RESET);
+		printf("Mine: %s\n", mine);
+		printf("Lib: %s\n", lib);
+	}
+}
+
 void	test_ft_memcpy(void)
 {
-	init_test_data();
-	printf("Testing ft_memcpy\n");
-	if (ft_memcpy(g_string_test1, g_string_test2, g_n) != memcpy(g_string_test1, g_string_test2, g_n))
-		printf(RED "Test ft_memcpy Failed!\n"RESET);
-	else
-		printf(GREEN "Test ft_memcpy sucsses!\n"RESET);
-	clear_test_data();
+	char sm[] = "This is just a test \\o/";
+	char sl[] = "This is just a test \\o/";
+	char dm[] = "whatever123456";
+	char dl[] = "whatever123456";
+	int n = 8;
+	sub_test_memcpy(sm, sl, dm, dl, n);
+
+	// test strings with overlap
+	char sm2[] = "This is an anwesome string";
+	char sl2[] = "This is an anwesome string";
+	char* dm2 = sm2 + 5; // start on "is"
+	char* dl2 = sl2 + 5;  // start on "is"
+	sub_test_memcpy(sm2, sl2, dm2, dl2, n);
+
+	char sm3[] = "rem ipssum dolor sit a";
+	char sl3[] = "rem ipssum dolor sit a";
+	char* dm3 = sm3 + 5; // start on "is"
+	char* dl3 = sl3 + 5;  // start on "is"
+	sub_test_memcpy(sm3, sl3, dm3, dl3, n);
 }
 
 void	test_is_alpha(void)
@@ -241,7 +270,7 @@ void	test_ft_memmove(void)
 	char sl[] = "This is just a test \\o/";
 	char dm[] = "whatever123456";
 	char dl[] = "whatever123456";
-	int n = 10;
+	int n = 8;
 	sub_test_memove(sm, sl, dm, dl, n);
 
 	// test strings with overlap
@@ -251,6 +280,11 @@ void	test_ft_memmove(void)
 	char* dl2 = sl2 + 5;  // start on "is"
 	sub_test_memove(sm2, sl2, dm2, dl2, n);
 
+	char sm3[] = "rem ipssum dolor sit a";
+	char sl3[] = "rem ipssum dolor sit a";
+	char* dm3 = sm3 + 5; // start on "is"
+	char* dl3 = sl3 + 5;  // start on "is"
+	sub_test_memove(sm3, sl3, dm3, dl3, n);
 }
 
 void	test_ft_strlcpy(void)
@@ -318,12 +352,13 @@ void test_ft_strrchr(void)
 	init_test_data();
 	printf("Testing ft_strrchr \n");
 	// char teste [] = "testa";
-	if (ft_strrchr(g_string_test1, g_char_test) != strrchr(g_string_test1, g_char_test))
+	if (ft_strrchr(g_string_test1, '\0') != strrchr(g_string_test1, '\0'))
 		printf(RED "Test ft_strrchr Failed!\n"RESET);
 	else 
 		printf(GREEN "Test ft_strrchr sucsses!\n"RESET);
 	clear_test_data();
 }
+
 
 void test_ft_strncmp(void)
 {
@@ -385,7 +420,7 @@ void sub_compare_strnstr(const char* hay, const char* need, size_t num_bytes)
 
 void test_ft_strnstr(void)
 {
-	printf("Testing ft_strnstr!\n");
+	printf(RESET"Testing ft_strnstr!\n");
 	sub_compare_strnstr("TESTE", "TE", 5);
 	sub_compare_strnstr("TESTE", "ST", 5);
 	sub_compare_strnstr("TESTE", "TE", 2);
@@ -435,6 +470,15 @@ void test_ft_atoi(void)
 	sub_compare_atoi("    -++3549");
 	sub_compare_atoi("    -  697");
 	sub_compare_atoi("    +--697");
+	sub_compare_atoi("-");
+	sub_compare_atoi("asfwfg");
+	sub_compare_atoi("");
+	sub_compare_atoi("-+48");
+	sub_compare_atoi("+-48");
+	sub_compare_atoi("-+348");
+	sub_compare_atoi("+-348");
+	sub_compare_atoi("-+549");
+
 }
 
 void sub_compare_strdup(const char *s1)

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 21:15:10 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 18:24:40 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 11:27:50 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strrchr(const char *s, int c)
 	while (len != (-1))
 	{
 		if (alias[len] == c)
-			return (alias);
+			return (alias + len);
 		else
 			len --;
 	}

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/16 20:58:58 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/17 13:31:03 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 14:44:11 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,27 @@ return The converted value.*/
 
 #include "libft.h"
 
-void	deal_isspace_issign(char *alias, int *count, int *count_m, int *count_p)
+int	deal_isspace_issign(char *alias, int *count, int *count_m, int *count_p)
 {
 	while (alias[*count] == ' ' || alias[*count] == '\t'
-		|| alias[*count] == '\r'|| alias[*count] == '\n'
-		|| alias[*count] == '\v')
+		|| alias[*count] == '\r' || alias[*count] == '\n'
+		|| alias[*count] == '\v' || alias[*count] == '\f')
 			(*count)++;
 	while (alias[*count] == '-')
 	{
+		if (alias[*count + 1] == '+' || alias[*count + 1] == '-')
+			return (0);
 		(*count)++;
 		(*count_m)++;
 	}
 	if (alias[*count] == '+')
 	{
+		if (alias[*count + 1] == '+')
+			return (0);
 		(*count)++;
 		(*count_p)++;
 	}
+	return (1);
 }
 
 int	ft_atoi(const char *nptr)
@@ -43,26 +48,25 @@ int	ft_atoi(const char *nptr)
 	int		count;
 	char	*alias;
 	int		nbr;
-	int		count_minus;
-	int		count_plus;
+	int		count_m;
+	int		count_p;
 
 	alias = (char *) nptr;
 	count = 0;
-	count_minus = 0;
+	count_m = 0;
 	nbr = 0;
-	count_plus = 0;
-	deal_isspace_issign(alias, &count, &count_minus, &count_plus);
+	count_p = 0;
+	if (deal_isspace_issign(alias, &count, &count_m, &count_p) == 0)
+		return (0);
 	while (ft_isdigit(alias[count]) != 0)
 	{
 			nbr = ((nbr * 10) + (alias[count] - 48));
 			count++;
 	}
-	if (count_minus == 1)
+	if (count_m == 1)
 	{
 		nbr = (-1 * nbr);
 		return (nbr);
 	}
-	else if (count_minus > 1 || count_plus > 1)
-		return (0);
 	return (nbr);
 }

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:22:11 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/18 18:49:14 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 09:24:21 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,45 @@ fd: The file descriptor on which to write.*/
 
 #include "libft.h"
 
-// void	ft_putnbr_fd(int n, int fd)
-// {
-	
-// }
+long long int	exponential(long long x, long long n)
+{
+	long long int	i;
+	long long int	number;
+
+	number = 1;
+	i = 0;
+	while (i < n)
+	{
+		number *= x;
+		i++;
+	}
+	return (number);
+}
+
+void	ft_putnbr(int toconvert)
+{
+	long long int	digit;
+	long long int	n;
+	long long int	exp;
+	long long int	original;
+	long long int	toconvertlong;
+
+	toconvertlong = toconvert;
+	if (toconvertlong < 0)
+	{
+		ft_putchar_fd('-', 1);
+		toconvertlong = toconvertlong * (-1);
+	}
+	original = toconvertlong;
+	n = 10;
+	while (n >= 1)
+	{
+		exp = exponential(10, n);
+		digit = (toconvertlong / exp);
+		if (original > exp)
+			ft_putchar_fd((digit + 48), 1);
+		toconvertlong = toconvertlong - (digit * exp);
+		n--;
+	}
+	ft_putchar_fd((toconvertlong + 48), 1);
+}

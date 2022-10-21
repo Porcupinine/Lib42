@@ -6,14 +6,14 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 19:47:08 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/20 20:18:07 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 09:22:14 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <bsd/string.h>
+// # include <bsd/string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <ctype.h>

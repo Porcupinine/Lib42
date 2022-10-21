@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/10 20:05:14 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/16 22:34:55 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/21 11:01:27 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize)
 	alias = (char *) src;
 	count = 0;
 	if (dstsize == 0)
-		return (0);
+		return (ft_strlen(src));
 	while (count < (dstsize -1) && alias[count] != '\0')
 	{
 		dst[count] = alias[count];
