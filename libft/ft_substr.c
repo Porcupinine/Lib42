@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 14:14:55 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 16:40:31 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 15:03:36 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,21 @@ Returns The substring or NULL if the allocation fails.*/
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
-	size_t	count;
+	size_t	s_len;
+	size_t	final_string_len;
 
-	count = 0;
-	sub = malloc((len +1) * sizeof(char));
+	if (s == NULL)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start > s_len)
+		final_string_len = 0;
+	else
+		final_string_len = s_len - start;
+	if (final_string_len > len)
+		final_string_len = len;
+	sub = calloc((final_string_len + 1), sizeof(char));
 	if (sub == NULL)
 		return (NULL);
-	if (ft_strlen(s) < start)
-		len = 0;
-	while (s[start] != '\0' && count < len)
-	{
-		sub[count] = s[start];
-		count++;
-		start++;
-	}
-	sub[count] = '\0';
+	ft_strlcpy(sub, &(s[start]), final_string_len + 1);
 	return (sub);
 }

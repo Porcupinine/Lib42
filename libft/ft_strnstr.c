@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 19:39:52 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/16 18:19:57 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 11:23:46 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return ((char *)haystack);
 	while (haystack[count_hay] != '\0' && (len - count_hay) >= len_nee)
 	{
-		if (ft_strncmp(needle, haystack + count_hay, len) == 0)
+		if (ft_strncmp(needle, haystack + count_hay, len_nee) == 0)
 			return ((char *)&haystack[count_hay]);
 		count_hay++;
 	}

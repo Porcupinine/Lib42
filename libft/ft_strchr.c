@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 20:25:55 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 18:41:42 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 14:30:53 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@ char	*ft_strchr(const char *s, int c)
 	int		count;
 	int		len;
 	char	*alias;
+	char	compare_char;
 
+	compare_char = c;
 	count = 0;
 	alias = (char *) s;
 	len = ft_strlen(s);
 	while (count < (len + 1))
 	{
-		if (alias[count] != c)
+		if (alias[count] != compare_char)
 			count++;
-		else if (alias[count] == c)
+		else if (alias[count] == compare_char)
 			return (alias + count);
 	}
 	return (0);

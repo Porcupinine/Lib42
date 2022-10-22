@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/20 13:59:41 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 14:19:03 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 15:30:50 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ NULL if the allocation fails.*/
 #include "libft.h"
 #include <stdio.h>
 
-int	count_words(char const *s, char c)
+static int	count_words(char const *s, char c)
 {
 	int		count;
 	int		count_words;
 
 	count = 0;
 	count_words = 0;
+	while (s[count] == c && s[count] != '\0')
+			count++;
 	while (s[count] != '\0')
 	{
 		while (s[count] != c && s[count] != '\0')
@@ -38,19 +40,19 @@ int	count_words(char const *s, char c)
 	return (count_words);
 }
 
-char	*get_string(char *s, char c, int *count_str)
+static char	*get_string(char *s, char c, int *count_str)
 {
 	int		count;
 	char	*str;
 
+	while (s[*count_str] == c)
+		(*count_str)++;
 	count = *count_str;
 	while (s[*count_str] != c && s[*count_str] != '\0')
 	{
 		(*count_str)++;
 	}
 	str = ft_substr(s, count, (*count_str - count));
-	while (s[*count_str] == c)
-		(*count_str)++;
 	return (str);
 }
 
@@ -59,19 +61,18 @@ char	**ft_split(char const *s, char c)
 	int					words;
 	char				**arr;
 	int					count_str;
-	char				*temp_str;
 	int					count_arr;
 
 	count_str = 0;
 	count_arr = 0;
 	words = count_words(s, c);
 	arr = calloc((words + 1), sizeof(char *));
-	while (count_arr < (words +1))
+	if (arr == NULL)
+		return (NULL);
+	while (count_arr < words)
 	{
-		temp_str = get_string((char *)s, c, &count_str);
-		arr[count_arr] = ft_strdup(temp_str);
+		arr[count_arr] = get_string((char *)s, c, &count_str);
 		count_arr++;
-		free(temp_str);
 	}
 	arr[count_arr] = NULL;
 	return (arr);

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 19:10:01 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 16:11:14 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 13:06:15 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	count = 0;
 	alias1 = (unsigned char *) s1;
 	alias2 = (unsigned char *) s2;
-	while (alias1[count] != '\0' && alias2[count] != '\0' && count < n)
+	while (count < n)
 	{
 		if (alias1[count] == alias2[count])
 			count++;

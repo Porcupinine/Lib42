@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 14:32:37 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/17 14:48:37 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 11:59:20 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	counts1 = 0;
 	counts2 = 0;
 	len = ft_strlen(s1) + ft_strlen(s2);
-	join = malloc(len * sizeof(char));
+	join = malloc((len + 1) * sizeof(char));
 	if (join == NULL)
 		return (NULL);
 	while (s1[counts1] != '\0')
@@ -41,5 +41,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		counts1++;
 		counts2++;
 	}
+	join[counts1] = '\0';
 	return (join);
 }

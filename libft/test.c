@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 14:36:33 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 21:23:09 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,26 +150,32 @@ void	test_is_ascii(void)
 void	test_is_alnum(void)
 {
 	printf("Testing ft_isalnum\n");
-	int	fail;
-	fail = 0;
-	for(int i = 0; i<128; ++i)
-	{
-		int mine = ft_isalnum(i);
-		int lib = isalnum(i);
-		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
-		{
-			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
-			fail = 1;
-		}
-	}
-	if (fail == 1)
-	{
-		printf(RED "Test ft_isalnum failed!\n" RESET);
-	}
-	else
-	{
-		printf(GREEN "Test ft_isalnum success!\n" RESET);
-	}
+	// int	fail;
+	// fail = 0;
+	// for(int i = 0; i<128; ++i)
+	// {
+	// 	int mine = ft_isalnum(i);
+	// 	int lib = isalnum(i);
+	// 	if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
+	// 	{
+	// 		printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
+	// 		fail = 1;
+	// 	}
+	// }
+	// if (fail == 1)
+	// {
+	// 	printf(RED "Test ft_isalnum failed!\n" RESET);
+	// }
+	// else
+	// {
+	// 	printf(GREEN "Test ft_isalnum success!\n" RESET);
+	// }
+	int i = '0';
+    while (i <= '9')
+    {
+        printf("%d", ft_isalnum(i));
+        i++;
+    }
 }
 
 void	test_is_digit(void)
@@ -336,10 +342,12 @@ void test_ft_tolower(void)
 void test_ft_strchr(void)
 {
 	init_test_data();
+	char s[] = "tripouille";
 	printf("Testing ft_strchr \n" );
-	// char tes/÷te [] = "abcde÷÷";
-	if (ft_strchr(g_string_test1, g_char_test) != strchr(g_string_test1, g_char_test))
-		printf(RED "Test ft_strchr Failed!\n" RESET);
+	if (ft_strchr(s, 't' + 256) != strchr(s, 't' + 256))
+		{
+			printf(RED "Test ft_strchr Failed!\n" RESET);
+		printf("mine: %p\nlib: %s\n", ft_strchr(s, 't' + 256), strchr(s, 't' + 256) );}
 	else
 		printf(GREEN "Test ft_strchr sucsses!\n" RESET);
 	// printf("%p\n", ft_strchr(teste, '\0'));
@@ -358,7 +366,6 @@ void test_ft_strrchr(void)
 		printf(GREEN "Test ft_strrchr sucsses!\n"RESET);
 	clear_test_data();
 }
-
 
 void test_ft_strncmp(void)
 {
@@ -407,8 +414,8 @@ void test_ft_strlcat(void)
 
 void sub_compare_strnstr(const char* hay, const char* need, size_t num_bytes) 
 {
-	char* c1 = ft_strnstr(hay, need, 5);
-	char* c2 = strnstr(hay, need, 5);
+	char* c1 = ft_strnstr(hay, need, num_bytes);
+	char* c2 = strnstr(hay, need, num_bytes);
 	if (c1 == c2)
 		printf(GREEN"Test ft_strnstr sucsses!\n"RESET);
 	else
@@ -423,7 +430,7 @@ void test_ft_strnstr(void)
 	printf(RESET"Testing ft_strnstr!\n");
 	sub_compare_strnstr("TESTE", "TE", 5);
 	sub_compare_strnstr("TESTE", "ST", 5);
-	sub_compare_strnstr("TESTE", "TE", 2);
+	sub_compare_strnstr("lorem ipsum dolor sit amet", "ipsum", 15);
 	sub_compare_strnstr("TESTE", "", 12);
 	sub_compare_strnstr("", "TE", 2);
 	sub_compare_strnstr("", "", 10);
@@ -507,41 +514,66 @@ void	test_ft_strdup(void)
 
 void	test_ft_substr(void)
 {
-	char *str = "Testando!";
+	char *str = "0123456789";
 	printf("Testing ft_substr!\n");
-	printf("%s\n", str);
-	printf("%s\n",ft_substr(str, 5, 3));
+	char *res = ft_substr(str, 5, 3);
+	if (strcmp(res, "567")) 
+	{
+		printf("Expected 567 and got %s\n", res);
+		printf(RED"Test ft_substr fail!\n" RESET);
+	}
+		else 
+	{
+		printf(GREEN"Test ft_substr sucsses!\n"RESET);
+	}
+	free(res);
 }
 
 void test_ft_strjoin(void)
 {
-	char *s1 = "testa ";
-	char *s2 = "Testando";
+	// char *s1 = "testa ";
+	// char *s2 = "Testando";
+	char *s3 = "my favorite animal is";
+    char *s4 = " ";
+    char *s5 = "the nyancat";
+	char *res_1 = ft_strjoin(s3, s4);
+    char *res = ft_strjoin(res_1, s5);
+
 	printf("Testing ft_strjoin!\n");
-	printf("s1: %s\ns2: %s\n", s1, s2);
-	printf("%s\n",ft_strjoin(s1, s2));
+	if (strcmp(res, "my favorite animal is the nyancat")) 
+	{
+		printf("Expected my favorite animal is the nyancat and got %s\n", res);
+		printf(RED"Test ft_strjoin fail!\n" RESET);
+	} 
+	else 
+	{
+		printf(GREEN"Test ft_strjoin sucsses!\n"RESET);
+	}
+	free(res_1);
+	free(res);
 }
 
 void test_ft_strtrim(void)
 {
-	char *s1 = "testabcdtest";
-	char *s2 = "tes";
+	// char *s1 = "testabcdtest";
+	// char *s2 = "tes";
 	printf("Testing ft_strtrim!\n");
-	printf("s1: %s\ns2: %s\n", s1, s2);
-	printf("%s\n",ft_strtrim(s1, s2));
+	// printf("s1: %s\ns2: %s\n", s1, s2);
+	// printf("%s\n",ft_strtrim(s1, s2));
+	printf("%s\n",ft_strtrim("   xxx   xxx", " x"));
 }
 
 void test_ft_putendl_fd(void)
 {
-	ft_putendl_fd("Testando", 1);
-	ft_putendl_fd("a", 1);
-	ft_putendl_fd("s", 1);
-	ft_putendl_fd("d", 1);
+	// ft_putendl_fd("Testando", 1);
+	// ft_putendl_fd("a", 1);
+	// ft_putendl_fd("s", 1);
+	// ft_putendl_fd("d", 1);
 }
 
 void test_ft_split(void)
 {
-	char const str[] = "Testando   se funciona direito";
+	char const str[] = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ";
 	char c = ' ';
 	char **test = ft_split(str, c);
 	int count = 0;
@@ -561,6 +593,21 @@ void test_ft_split(void)
 
 }
 
+void test_ft_itoa(void)
+{
+	int n = 0;
+	char *s = ft_itoa(n);
+	printf("Testing ft_itoa\n");
+	printf("%s\n", s);
+}
+
+void test_ft_putnbr_fd(void)
+{
+	printf("testing putnb\n");
+	ft_putnbr_fd(10, 1);
+		printf("\n");
+
+}
 
 int	main(void)
 {
@@ -615,6 +662,10 @@ int	main(void)
 	test_ft_putendl_fd();
 		printf("\n");
 	test_ft_split();
+		printf("\n");
+	test_ft_itoa();
+		printf("\n");
+	test_ft_putnbr_fd();
 }
 
 // int main4(void)

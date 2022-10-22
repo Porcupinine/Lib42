@@ -30,7 +30,7 @@ ft_strrchr.c \
 ft_strtrim.c \
 ft_substr.c \
 ft_tolower.c \
-ft_toupper.c 
+ft_toupper.c
 
 OBJS_DIR = build/
 OBJS = $(SRC:.c=.o)
@@ -65,8 +65,11 @@ fclean:
 clean_all: clean fclean
 	rm testall test.o
 
+re: fclean all
+
 test: $(NAME)
 	echo $(UNAME_S)
-	$(CC) -c test.c
-	$(CC) -o testall test.o $(NAME) $(LDLIBS)
+	$(CC) -c test.c $(CFLAGS)
+	$(CC) -o testall test.o $(NAME) $(LDLIBS) $(CFLAGS)
+	@./testall
 

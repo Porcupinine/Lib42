@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:22:11 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 09:24:21 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 21:29:36 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,45 +17,56 @@ fd: The file descriptor on which to write.*/
 
 #include "libft.h"
 
-long long int	exponential(long long x, long long n)
+// static long long int	exponential(long long x, long long n2)
+// {
+// 	long long int	i;
+// 	long long int	number;
+
+// 	number = 1;
+// 	i = 0;
+// 	while (i < n2)
+// 	{
+// 		number *= x;
+// 		i++;
+// 	}
+// 	return (number);
+// }
+
+// void	ft_putnbr_fd(int n, int fd)
+// {
+// 	long long int	digit;
+// 	long long int	n2;
+// 	long long int	exp;
+// 	long long int	original;
+// 	long long int	toconvert;
+
+// 	toconvert = n;
+// 	if (toconvert < 0)
+// 	{
+// 		ft_putchar_fd('-', fd);
+// 		toconvert = toconvert * (-1);
+// 	}
+// 	original = toconvert;
+// 	n2 = 10;
+// 	while (n2 >= 1)
+// 	{
+// 		exp = exponential(10, n2);
+// 		digit = (toconvert / exp);
+// 		if (original > exp)
+// 			ft_putchar_fd((digit + 48), fd);
+// 		toconvert = toconvert - (digit * exp);
+// 		n2--;
+// 	}
+// 	ft_putchar_fd((toconvert + 48), fd);
+// }
+
+void	ft_putnbr_fd(int n, int fd)
 {
-	long long int	i;
-	long long int	number;
+	char	*number;
 
-	number = 1;
-	i = 0;
-	while (i < n)
-	{
-		number *= x;
-		i++;
-	}
-	return (number);
-}
-
-void	ft_putnbr(int toconvert)
-{
-	long long int	digit;
-	long long int	n;
-	long long int	exp;
-	long long int	original;
-	long long int	toconvertlong;
-
-	toconvertlong = toconvert;
-	if (toconvertlong < 0)
-	{
-		ft_putchar_fd('-', 1);
-		toconvertlong = toconvertlong * (-1);
-	}
-	original = toconvertlong;
-	n = 10;
-	while (n >= 1)
-	{
-		exp = exponential(10, n);
-		digit = (toconvertlong / exp);
-		if (original > exp)
-			ft_putchar_fd((digit + 48), 1);
-		toconvertlong = toconvertlong - (digit * exp);
-		n--;
-	}
-	ft_putchar_fd((toconvertlong + 48), 1);
+	number = ft_itoa(n);
+	if (number == NULL)
+		return ;
+	ft_putstr_fd(number, fd);
+	free(number);
 }

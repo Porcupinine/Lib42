@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 19:43:40 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/12 20:12:52 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 19:56:42 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
      the corresponding upper-case letter if there is one; otherwise, the argu-
      ment is returned unchanged.
 */
+
 #include "libft.h"
 
 int	ft_toupper(int c)

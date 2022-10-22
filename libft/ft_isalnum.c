@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 15:13:59 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/09 21:50:20 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 13:03:52 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,7 @@ and zero if not.*/
 
 int	ft_isalnum(int c)
 {
-	if (c >= 0 && c < 48)
-		return (0);
-	else if (c > 57 && c < 65)
-		return (0);
-	else if (c > 90 && c < 97)
-		return (0);
-	else if (c > 122)
-		return (0);
-	else
-		return (1024);
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/16 20:58:58 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 14:44:11 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/22 19:54:32 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ return The converted value.*/
 
 #include "libft.h"
 
-int	deal_isspace_issign(char *alias, int *count, int *count_m, int *count_p)
+static int	deal_isspace_issign(char *a, int *count, int *count_m, int *count_p)
 {
-	while (alias[*count] == ' ' || alias[*count] == '\t'
-		|| alias[*count] == '\r' || alias[*count] == '\n'
-		|| alias[*count] == '\v' || alias[*count] == '\f')
+	while (a[*count] == ' ' || a[*count] == '\t'
+		|| a[*count] == '\r' || a[*count] == '\n'
+		|| a[*count] == '\v' || a[*count] == '\f')
 			(*count)++;
-	while (alias[*count] == '-')
+	while (a[*count] == '-')
 	{
-		if (alias[*count + 1] == '+' || alias[*count + 1] == '-')
+		if (a[*count + 1] == '+' || a[*count + 1] == '-')
 			return (0);
 		(*count)++;
 		(*count_m)++;
 	}
-	if (alias[*count] == '+')
+	if (a[*count] == '+')
 	{
-		if (alias[*count + 1] == '+')
+		if (a[*count + 1] == '+')
 			return (0);
 		(*count)++;
 		(*count_p)++;
