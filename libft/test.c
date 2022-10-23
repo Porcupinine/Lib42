@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/23 02:48:43 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/23 17:35:31 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -491,6 +491,17 @@ TEST_CASE("libft", "testall")
 	// test_ft_putnbr_fd();
 }
 
+TEST_CASE("ft_lstadd_front")
+{
+	t_list	*head;
+	t_list	*new_node;
+	const char *content = "Teste";
+	const char *content2 = "Teste head";
+
+	head = ft_lstnew(content2);
+	new_node = ft_lstnew(content);
+	ft_lstadd_front(&head, new_node);
+}
 // int main4(void)
 // {
 // 	char str1 [11] = "abcdef";

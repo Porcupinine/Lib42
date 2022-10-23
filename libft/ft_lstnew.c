@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_striteri.c                                      :+:    :+:            */
+/*   ft_lstnew.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/23 00:17:18 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/23 17:50:53 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/10/23 16:33:20 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/10/23 17:45:22 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Applies the function ’f’ on each character of
-the string passed as argument, passing its index
-as first argument. Each character is passed by
-address to ’f’ to be modified if necessary.
-*/
+/*Allocates (with malloc(3)) and returns a new node.
+The member variable ’content’ is initialized with
+the value of the parameter ’content’. The variable
+’next’ is initialized to NULL.
+return new node*/
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+t_list	*ft_lstnew(void *content)
 {
-	int		count;
-	int		s_len;
+	t_list	*new_item;
 
-	count = 0;
-	s_len = ft_strlen(s);
-	while (count < s_len)
-	{
-		f(count, s + count);
-		count++;
-	}
+	new_item = calloc(1, sizeof(t_list));
+	if (new_item == NULL)
+		return (NULL);
+	new_item->content = content;
+	new_item->next = NULL;
+	return (new_item);
 }
-
