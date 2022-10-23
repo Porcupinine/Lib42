@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/23 17:35:31 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/23 19:04:30 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -495,12 +495,12 @@ TEST_CASE("ft_lstadd_front")
 {
 	t_list	*head;
 	t_list	*new_node;
-	const char *content = "Teste";
-	const char *content2 = "Teste head";
+	 char *content = "Teste";
+	 char *content2 = "Teste head";
 
 	head = ft_lstnew(content2);
 	new_node = ft_lstnew(content);
-	ft_lstadd_front(&head, new_node);
+	ft_lstadd_back(&head, new_node);
 }
 // int main4(void)
 // {
