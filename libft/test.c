@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 21:52:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/22 21:23:09 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/23 02:48:43 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,401 +15,226 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+#include <catch2/catch_all.hpp>
+
+extern "C" {
 #include "libft.h"
+}
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define RESET "\33[0m"
 
-char* g_string_test1;
-char* g_string_test2;
-char* g_string_test11;
-char* g_string_test22;
-char* g_haystack;
-char* g_needle;
-int g_n = 0;
-char g_char_test = 'c';
-
-void init_test_data() 
+TEST_CASE("ft_memcpy")
 {
-	g_string_test1 = malloc(100);
-	strcpy(g_string_test1, "Does this work?");
-	g_string_test2 = malloc(100);
-	strcpy(g_string_test2, "Don't know...");
-	g_string_test11 = malloc(100);
-	strcpy(g_string_test11, "Does this work?");
-	g_string_test22 = malloc(100);
-	strcpy(g_string_test22, "Don't know...");
-	g_haystack = malloc(100);
-	strcpy(g_haystack, "Dog cat horse cow sheep");
-	g_needle = malloc(100);
-	strcpy(g_needle, "cat");
-
-}
-
-void clear_test_data()
-{
-	free(g_string_test1);
-	free(g_string_test2);
-	free(g_string_test11);
-	free(g_string_test22);
-	free(g_haystack);
-	free(g_needle);
-}
-
-void	sub_test_memcpy (char* mine, char* lib, char* d_min, char* d_lib, size_t n)
-{
-	char* res_mine = ft_memcpy(d_min, mine, n);
-	char* res_lib = memcpy(d_lib, lib, n);
-	printf("Testing ft_memcpy\n");
-	if (strcmp(res_mine, res_lib) == 0)
+	char str[] = "Testando se funciona";
+	char destm[100] = {};
+	char destl[100] = {};
+	for (int i = 0; i < 50; ++i)
 	{
-		printf(GREEN "Test ft_memcpy sucsses!\n" RESET);
+		INFO("iteration = " << i << ", destl = " << destl << ", destm = " << destm);
+		REQUIRE(memcpy(destl, str, i) == ft_memcpy(destm, str, i));
+		REQUIRE(strcmp(destm, destl) == 0);
+
 	}
-	else
-	{
-		printf(RED "Test ft_memcpy failed!\n" RESET);
-		printf("Mine: %s\n", mine);
-		printf("Lib: %s\n", lib);
-	}
+	str[0] = '\0';
+	destm[0] = 'a';
+	destl[0] = 'a';
+	INFO("destl = " << destl << ", destm = " << destm);
+	REQUIRE(memcpy(destl, str, 10) == ft_memcpy(destm, str, 10));
+	REQUIRE(strcmp(destm, destl) == 0);
 }
 
-void	test_ft_memcpy(void)
+TEST_CASE("ft_isalpha")
 {
-	char sm[] = "This is just a test \\o/";
-	char sl[] = "This is just a test \\o/";
-	char dm[] = "whatever123456";
-	char dl[] = "whatever123456";
-	int n = 8;
-	sub_test_memcpy(sm, sl, dm, dl, n);
-
-	// test strings with overlap
-	char sm2[] = "This is an anwesome string";
-	char sl2[] = "This is an anwesome string";
-	char* dm2 = sm2 + 5; // start on "is"
-	char* dl2 = sl2 + 5;  // start on "is"
-	sub_test_memcpy(sm2, sl2, dm2, dl2, n);
-
-	char sm3[] = "rem ipssum dolor sit a";
-	char sl3[] = "rem ipssum dolor sit a";
-	char* dm3 = sm3 + 5; // start on "is"
-	char* dl3 = sl3 + 5;  // start on "is"
-	sub_test_memcpy(sm3, sl3, dm3, dl3, n);
-}
-
-void	test_is_alpha(void)
-{
-	printf("Testing ft_isalpha\n");
 	int	fail;
 	fail = 0;
 	for(int i = 0; i < 256; ++i)
 	{
-		int mine = ft_isalpha(i);
-		int lib = isalpha(i);
-		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
-		{
-			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
-			fail = 1;
-		}
-	}
-	if (fail == 1)
-	{
-		printf(RED "Test ft_isapha failed!\n" RESET);
-	}
-	else
-	{
-		printf(GREEN "Test ft_isapha success!\n" RESET);
+		if (isalpha(i))
+			REQUIRE(ft_isalpha(i));
+		else 
+			REQUIRE_FALSE(ft_isalpha(i));
 	}
 }
 
-void	test_is_ascii(void)
+TEST_CASE("ft_isascii")
 {
-	printf("Testing ft_isascii\n");
-	int	fail;
-	fail = 0;
-	for(int i = 0; i<1024; ++i)
+	for(int i = 0; i<1024; ++i)	
 	{
-		int mine = ft_isascii(i);
-		int lib = isascii(i);
-		if((mine != 0 && lib == 0)|| (mine == 0 && lib !=0))
-		{
-			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
-			fail = 1;
-		}
-	}
-	if (fail == 1)
-	{
-		printf(RED "Test ft_isascii failed!\n" RESET);
-	}
-	else
-	{
-		printf(GREEN "Test ft_isascii success!\n" RESET);
+		if (isascii(i))
+			REQUIRE(ft_isascii(i));
+		else 
+			REQUIRE_FALSE(ft_isascii(i));
 	}
 }
 
-void	test_is_alnum(void)
+TEST_CASE("ft_isalnum")
 {
-	printf("Testing ft_isalnum\n");
-	// int	fail;
-	// fail = 0;
-	// for(int i = 0; i<128; ++i)
-	// {
-	// 	int mine = ft_isalnum(i);
-	// 	int lib = isalnum(i);
-	// 	if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
-	// 	{
-	// 		printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
-	// 		fail = 1;
-	// 	}
-	// }
-	// if (fail == 1)
-	// {
-	// 	printf(RED "Test ft_isalnum failed!\n" RESET);
-	// }
-	// else
-	// {
-	// 	printf(GREEN "Test ft_isalnum success!\n" RESET);
-	// }
-	int i = '0';
-    while (i <= '9')
-    {
-        printf("%d", ft_isalnum(i));
-        i++;
-    }
+	for(int i = 0; i<256; ++i)	
+	{
+		if (isalnum(i))
+			REQUIRE(ft_isalnum(i));
+		else 
+			REQUIRE_FALSE(ft_isalnum(i));
+	}
 }
 
-void	test_is_digit(void)
+TEST_CASE("ft_isdigit")
 {
-	printf("Testing ft_isdigit\n");
-	int	fail;
-	fail = 0;
-	for(int i = 0; i<1024; ++i)
+	for (int i = 0; i<1024; ++i)
 	{
-		int mine = ft_isdigit(i);
-		int lib = isdigit(i);
-		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
-		{
-			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
-			fail = 1;
-		}
-	}
-	if (fail == 1)
-	{
-		printf(RED "Test ft_isdigit failed!\n" RESET);
-	}
-	else
-	{
-		printf(GREEN "Test ft_isdigit success!\n" RESET);
+		if (isdigit(i))
+			REQUIRE(ft_isdigit(i));
+		else
+			REQUIRE_FALSE(ft_isdigit(i));
 	}
 }
 
-void	test_is_print(void)
+TEST_CASE("ft_isprint")
 {
-	printf("Testing ft_isprint\n");
-	int	fail;
-	fail = 0;
-	for(int i = 0; i<1024; ++i)
+	for (int i = 0; i<1024; ++i)
 	{
-		int mine = ft_isprint(i);
-		int lib = isprint(i);
-		if((mine != 0 && lib == 0) || (mine == 0 && lib !=0))
-		{
-			printf("Not matching! Input: %d, mine: %d, lib: %d\n", i, mine, lib);
-			fail = 1;
-		}
-	}
-	if (fail == 1)
-	{
-		printf(RED "Test ft_isprint failed!\n" RESET);
-	}
-	else
-	{
-		printf(GREEN "Test ft_isprint success!\n" RESET);
+		if (isprint(i))
+			REQUIRE(ft_isprint(i));
+		else
+			REQUIRE_FALSE(ft_isprint(i));
 	}
 }
 
-void	test_ft_strlen(void)
+TEST_CASE("ft_strlen")
 {
-	char s[100] = "This is just a test";
-	printf("Testing ft_strlen\n");
-	if (ft_strlen(s) == strlen(s))
-		printf(GREEN "Test ft_strlen sucsses!\n" RESET);
-	else 
-		{
-			printf(RED "Test ft_strlen failed!\n" RESET);
-		}
+	const char s[100] = "This is just a test";
+	REQUIRE(ft_strlen(s) == strlen(s));
+	const char str2[100] = "";
+	REQUIRE(ft_strlen(s) == strlen(s));
 }
 
-void	test_ft_memset(void)
+TEST_CASE("ft_memset")
 {
 	char smine[100] = "This is just a test \\o/";
 	char slib[100] = "This is just a test \\o/";
 	int n = 10;
 	int c = 68;
-	printf("Testing ft_memset\n");
-	if (strcmp(ft_memset(smine,c,n), memset(slib,c,n)) == 0)
-		printf(GREEN "Test ft_memset sucsses!\n" RESET);
-	else
-		printf(RED "Test ft_memset failed!\n" RESET);
+	REQUIRE(strcmp(ft_memset(smine,c,n), memset(slib,c,n)) == 0);
 }
 
-void	sub_test_memove(char* mine, char* lib, char* d_min, char* d_lib, size_t n)
+TEST_CASE("ft_memmove")
 {
-	char* res_mine = ft_memmove(d_min, mine, n);
-	char* res_lib = memmove(d_lib, lib, n);
-	printf("Testing ft_memmove\n");
-	if (strcmp(res_mine, res_lib) == 0)
+	char str[] = "Testando se funciona";
+	char destm[100] = {};
+	char destl[100] = {};
+	for (int i = 0; i < 50; ++i)
 	{
-		printf(GREEN "Test ft_memmove sucsses!\n" RESET);
+		INFO("iteration = " << i << ", destl = " << destl << ", destm = " << destm);
+		REQUIRE(memmove(destl, str, i) == ft_memmove(destm, str, i));
+		REQUIRE(strcmp(destm, destl) == 0);
+
 	}
-	else
+	str[0] = '\0';
+	destm[0] = 'a';
+	destl[0] = 'a';
+	INFO("destl = " << destl << ", destm = " << destm);
+	REQUIRE(memmove(destl, str, 10) == ft_memmove(destm, str, 10));
+	REQUIRE(strcmp(destm, destl) == 0);
+}
+
+TEST_CASE("ft_strlcpy")
+{
+	char str[] = "Testando se funciona";
+	char destm[100] = {};
+	char destl[100] = {};
+	for (int i = 0; i < 50; ++i)
 	{
-		printf(RED "Test ft_memmove failed!\n");
-		printf("Mine: %s\n", mine);
-		printf("Lib: %s\n", lib);
+		INFO("iteration = " << i << ", destl = " << destl << ", destm = " << destm);
+		REQUIRE(strlcpy(destl, str, i) == ft_strlcpy(destm, str, i));
+		REQUIRE(strcmp(destm, destl) == 0);
+
 	}
+	str[0] = '\0';
+	destm[0] = 'a';
+	destl[0] = 'a';
+	INFO("destl = " << destl << ", destm = " << destm);
+	REQUIRE(strlcpy(destl, str, 10) == ft_strlcpy(destm, str, 10));
+	REQUIRE(strcmp(destm, destl) == 0);
 }
 
-void	test_ft_memmove(void)
+TEST_CASE("ft_toupper")
 {
-	char sm[] = "This is just a test \\o/";
-	char sl[] = "This is just a test \\o/";
-	char dm[] = "whatever123456";
-	char dl[] = "whatever123456";
-	int n = 8;
-	sub_test_memove(sm, sl, dm, dl, n);
-
-	// test strings with overlap
-	char sm2[] = "This is an anwesome string";
-	char sl2[] = "This is an anwesome string";
-	char* dm2 = sm2 + 5; // start on "is"
-	char* dl2 = sl2 + 5;  // start on "is"
-	sub_test_memove(sm2, sl2, dm2, dl2, n);
-
-	char sm3[] = "rem ipssum dolor sit a";
-	char sl3[] = "rem ipssum dolor sit a";
-	char* dm3 = sm3 + 5; // start on "is"
-	char* dl3 = sl3 + 5;  // start on "is"
-	sub_test_memove(sm3, sl3, dm3, dl3, n);
-}
-
-void	test_ft_strlcpy(void)
-{
-	init_test_data();
-	printf("Testing ft_strlcpy\n");
-	if (ft_strlcpy(g_string_test1, g_string_test2, g_n) == strlcpy(g_string_test11, g_string_test22, g_n))
-		printf(GREEN "Test ft_strlcpy sucsses!\n" RESET);
-	else
+	char strm[] = "Testing To Upper Case";
+	char strl[] = "Testing To Upper Case";
+	int str_len = strlen(strl);
+	for (int i = 0;  i < str_len; i++)
 	{
-		printf(RED "Test ft_strlcpy failed!\n" RESET);
-		printf("Mine: %ld \nLib : %ld \n",ft_strlcpy(g_string_test1, g_string_test2, g_n),strlcpy(g_string_test11, g_string_test22, g_n));
+		REQUIRE(toupper(strl[i]) == ft_toupper(strm[i]));
 	}
-	clear_test_data();
+
 }
 
-void test_ft_toupper(void)
+TEST_CASE("ft_tolower")
 {
-	init_test_data();
-	int count = 0;
-	// char str [] = "this is a test! Mar Que Carai\n";
-	printf("testing ft_toupper\n");
-	while (g_string_test1[count] != '\0')
+	char strm[] = "Testing To LOWER Case";
+	char strl[] = "Testing To LOWER Case";
+	int str_len = strlen(strl);
+	for (int i = 0;  i < str_len; i++)
 	{
-		printf("%c", g_string_test1[count]);
-		g_string_test1[count] = ft_toupper(g_string_test1[count]);
-		count++;
+		REQUIRE(tolower(strl[i]) == ft_tolower(strm[i]));
 	}
-		printf("%s\n", g_string_test1);
-	clear_test_data();
 }
 
-void test_ft_tolower(void)
+TEST_CASE("ft_strchr")
 {
-	init_test_data();
-	int count = 0;
-	// char str [] = "this is a test! Mar Que Carai\n";
-	printf("Testing ft_tolower\n");
-	while (g_string_test1[count] != '\0')
+	char str[] = "Tripoullie";
+	char search[] =  "abcdefgt  \n \f \r 35267";
+	int search_len = strlen(search);
+	for (int i = 0; i < search_len; i++)
 	{
-		printf("%c", g_string_test1[count]);
-		g_string_test1[count] = ft_tolower(g_string_test1[count]);
-		count++;
+		REQUIRE(strchr(str, search[i]) == ft_strchr(str, search[i]));
 	}
-		printf("%s\n", g_string_test1);
-	clear_test_data();
 }
 
-void test_ft_strchr(void)
+TEST_CASE("ft_strrchr")
 {
-	init_test_data();
-	char s[] = "tripouille";
-	printf("Testing ft_strchr \n" );
-	if (ft_strchr(s, 't' + 256) != strchr(s, 't' + 256))
-		{
-			printf(RED "Test ft_strchr Failed!\n" RESET);
-		printf("mine: %p\nlib: %s\n", ft_strchr(s, 't' + 256), strchr(s, 't' + 256) );}
-	else
-		printf(GREEN "Test ft_strchr sucsses!\n" RESET);
-	// printf("%p\n", ft_strchr(teste, '\0'));
-	// printf("%p\n", strchr(teste, '\0'));
-	clear_test_data();
-}
-
-void test_ft_strrchr(void)
-{
-	init_test_data();
-	printf("Testing ft_strrchr \n");
-	// char teste [] = "testa";
-	if (ft_strrchr(g_string_test1, '\0') != strrchr(g_string_test1, '\0'))
-		printf(RED "Test ft_strrchr Failed!\n"RESET);
-	else 
-		printf(GREEN "Test ft_strrchr sucsses!\n"RESET);
-	clear_test_data();
-}
-
-void test_ft_strncmp(void)
-{
-	init_test_data();
-	printf("Testing ft_strncmp! \n");
-	if (strncmp(g_string_test1, g_string_test2, g_n) != ft_strncmp(g_string_test1, g_string_test2, g_n))
+	char str[] = "Tripoullie";
+	char search[] =  "abcdefgt  \n \f \r 35267";
+	int search_len = strlen(search);
+	for (int i = 0; i < search_len; i++)
 	{
-		printf(RED"Test ft_strncmp Failed!\n"RESET);
-		printf("Mine: %d \nLib: %d\n",ft_strncmp(g_string_test1, g_string_test2, g_n), strncmp(g_string_test1, g_string_test2, g_n));
+		REQUIRE(strrchr(str, search[i]) == ft_strrchr(str, search[i]));
 	}
-	else 
-		printf(GREEN"Test ft_strncmp sucsses!\n"RESET);	
-	clear_test_data();
 }
 
-void test_ft_memcmp(void)
+TEST_CASE("ft_strncmp")
 {
-	printf("Testing ft_memcmp! \n");
-	init_test_data();
-	// printf("String 1: %s\n", g_string_test1);
-	// printf("String 2 : %s\n", g_string_test2);
-	if (memcmp(g_string_test1, g_string_test2, g_n) != ft_memcmp(g_string_test1, g_string_test2, g_n))
+	char str1[] = "Testing if we can compare things";
+	char str2[] = "Testing if we fail";
+	for (int i = 0; i < 1024; i++)
 	{
-		printf(RED"Test ft_memcmp Failed!\n"RESET);
-		printf("Mine: %d \n Lib: %d\n",ft_memcmp(g_string_test1, g_string_test2, g_n), memcmp(g_string_test1, g_string_test2, g_n));
+		REQUIRE(strncmp(str1, str2, i) == ft_strncmp(str1, str2, i));
 	}
-	else 
-		printf(GREEN"Test ft_memcmp sucsses!\n"RESET);
-	clear_test_data();
 }
 
-void test_ft_strlcat(void)
+TEST_CASE("ft_memcmp")
 {
-	printf("Testing ft_strlcat\n");
+	char str1[] = "Testing if we can compare things";
+	char str2[] = "Testing if we fail";
+	for (int i = 0; i < 1024; i++)
+	{
+		REQUIRE(memcmp(str1, str2, i) == ft_memcmp(str1, str2, i));
+	}
+}
+
+TEST_CASE("ft_strlcat")
+{
 	char strdm [100] = "bo";
 	char strsm [] = "funfou";
 	char strdl [100] = "bo";
 	char strsl [] = "funfou";
-	
-	if (ft_strlcat(strdm, strsm, 4) != strlcat(strdl, strsl, 4))
-		printf(RED"Test ft_strlcat Failed!\n"RESET);
-	else
-		printf(GREEN"Test ft_strlcat sucsses!\n"RESET);	
-	// printf("Mine: %zu\n Lib: %lu",ft_strlcat(strdm, strsm, 20), strlcat(strdl, strsl, 20));
+	for (int i =0; i < 1024; i++)
+	{
+		REQUIRE(strlcat(strdl, strsl, i) == ft_strlcat(strdm, strsm, i));
+		REQUIRE(strcmp(strdm, strdl));
+	}
 }
 
 void sub_compare_strnstr(const char* hay, const char* need, size_t num_bytes) 
@@ -609,63 +434,61 @@ void test_ft_putnbr_fd(void)
 
 }
 
-int	main(void)
+TEST_CASE("libft", "testall")
 {
-	test_is_alpha();
-		printf("\n");
-	test_is_ascii();
-		printf("\n");
-	test_is_alnum();
-		printf("\n");
-	test_is_digit();
-		printf("\n");
-	test_is_print();
-		printf("\n");
-	test_ft_memset();
-		printf("\n");
-	test_ft_strlen();
-		printf("\n");
-	test_ft_strlcpy();
-		printf("\n");
-	test_ft_memmove();
-		printf("\n");
-	test_ft_toupper();
-		printf("\n");
-	test_ft_tolower();
-		printf("\n");
-	test_ft_strchr();
-		printf("\n");
-	test_ft_strrchr();
-		printf("\n");
-	test_ft_strncmp();
-		printf("\n");
-	test_ft_memcmp();
-		printf("\n");
-	test_ft_strlcat();
-		printf("\n");
-	test_ft_memcpy();
-		printf("\n");
-	test_ft_strnstr();
-		printf("\n");
-	test_ft_atoi();
-		printf("\n");
-	// test_ft_calloc();
-		printf("\n");
-	test_ft_strdup();
-		printf("\n");
-	test_ft_substr();
-		printf("\n");
-	test_ft_strjoin();
-		printf("\n");
-	test_ft_strtrim();
-		printf("\n");
-	test_ft_putendl_fd();
-		printf("\n");
-	test_ft_split();
-		printf("\n");
-	test_ft_itoa();
-		printf("\n");
-	test_ft_putnbr_fd();
+	// test_is_ascii();
+	// 	printf("\n");
+	// test_is_alnum();
+	// 	printf("\n");
+	// test_is_digit();
+	// 	printf("\n");
+	// test_is_print();
+	// 	printf("\n");
+	// test_ft_memset();
+	// 	printf("\n");
+	// test_ft_strlen();
+	// 	printf("\n");
+	// test_ft_strlcpy();
+	// 	printf("\n");
+	// test_ft_memmove();
+	// 	printf("\n");
+	// test_ft_toupper();
+	// 	printf("\n");
+	// test_ft_tolower();
+	// 	printf("\n");
+	// test_ft_strchr();
+	// 	printf("\n");
+	// test_ft_strrchr();
+	// 	printf("\n");
+	// test_ft_strncmp();
+	// 	printf("\n");
+	// test_ft_memcmp();
+	// 	printf("\n");
+	// test_ft_strlcat();
+	// 	printf("\n");
+	// test_ft_memcpy();
+	// 	printf("\n");
+	// test_ft_strnstr();
+	// 	printf("\n");
+	// test_ft_atoi();
+	// 	printf("\n");
+	// // test_ft_calloc();
+	// 	printf("\n");
+	// test_ft_strdup();
+	// 	printf("\n");
+	// test_ft_substr();
+	// 	printf("\n");
+	// test_ft_strjoin();
+	// 	printf("\n");
+	// test_ft_strtrim();
+	// 	printf("\n");
+	// test_ft_putendl_fd();
+	// 	printf("\n");
+	// test_ft_split();
+	// 	printf("\n");
+	// test_ft_itoa();
+	// 	printf("\n");
+	// test_ft_putnbr_fd();
 }
 
 // int main4(void)

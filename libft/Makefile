@@ -30,19 +30,26 @@ ft_strrchr.c \
 ft_strtrim.c \
 ft_substr.c \
 ft_tolower.c \
-ft_toupper.c
+ft_toupper.c \
+ft_strmapi.c \
+ft_striteri.c
+
 
 OBJS_DIR = build/
 OBJS = $(SRC:.c=.o)
 OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-CC=gcc
-CFLAGS += -g -Wall -Werror -Wextra -O0
-
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
+	CC=gcc
 	LDLIBS  += -lbsd
+else 
+	CC=cc
 endif
+
+CXXFLAGS +=-g -fpermissive
+CFLAGS += -g -Wall -Werror -Wextra -O0
+CXX = g++
 
 $(OBJS_DIR)%.o : %.c libft.h
 	@mkdir -p $(OBJS_DIR)
@@ -59,17 +66,14 @@ all: $(NAME)
 clean:
 	rm -rf $(OBJECTS_PREFIXED)
 
-fclean:
+fclean: clean
 	rm -rf $(NAME)
-
-clean_all: clean fclean
-	rm testall test.o
 
 re: fclean all
 
 test: $(NAME)
-	echo $(UNAME_S)
-	$(CC) -c test.c $(CFLAGS)
-	$(CC) -o testall test.o $(NAME) $(LDLIBS) $(CFLAGS)
+	$(CXX) test.c -o testall $(NAME) -lCatch2Main -lCatch2 $(LDLIBS) $(CXXFLAGS) -L/usr/local/lib
 	@./testall
 
+clean_test: fclean
+	rm testall test.o

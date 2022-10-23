@@ -7,5 +7,8 @@
 		}
 	],
 	"makefile.makefilePath": "/home/lplacerda/CODAM/Codam/libft/Makefile",
-	"makefile.makePath": "/usr/bin/make"
+	"makefile.makePath": "/usr/bin/make",
+	"files.associations": {
+		"libft.h": "c"
+	}
 }
