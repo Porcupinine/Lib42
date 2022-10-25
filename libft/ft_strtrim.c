@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 15:01:52 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/22 17:42:24 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/25 18:26:37 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (ft_strrchr(set, s1[count_end]) != 0)
 		count_end--;
 	trimlen = count_end - count_start;
-	trimmed = calloc((trimlen +1), sizeof(char));
+	trimmed = ft_calloc((trimlen +1), sizeof(char));
 	if (trimmed == NULL)
 		return (NULL);
 	trimmed = ft_substr(s1, count_start, (trimlen + 1));

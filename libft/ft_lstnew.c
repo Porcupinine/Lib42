@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 16:33:20 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/23 17:45:22 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/25 18:33:34 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new_item;
 
-	new_item = calloc(1, sizeof(t_list));
+	new_item = ft_calloc(1, sizeof(t_list));
 	if (new_item == NULL)
 		return (NULL);
 	new_item->content = content;

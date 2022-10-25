@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 19:02:17 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/23 20:49:54 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/25 18:06:43 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ as a parameter and free the node. The memory of
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
-{
+// void	ft_lstdelone(t_list *lst, void (*del)(void*))
+// {
 	
-}
+// }

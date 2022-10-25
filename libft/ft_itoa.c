@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/22 13:45:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/22 21:18:39 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/25 18:27:46 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_itoa(int n)
 	nb_size = n_size(nb);
 	if (nb == 0)
 		nb_size = 1;
-	nb_char = calloc((nb_size + 1), sizeof(char));
+	nb_char = ft_calloc((nb_size + 1), sizeof(char));
 	if (nb_char == NULL)
 		return (NULL);
 	ft_memset(nb_char, 'a', nb_size);
