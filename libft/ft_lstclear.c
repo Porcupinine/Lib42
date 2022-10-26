@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 18:45:16 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/25 20:19:49 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/26 17:58:36 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ NULL.*/
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list	*temp;
+// void	ft_lstclear(t_list **lst, void (*del)(void*))
+// {
+// 	t_list	*temp;
 
-	if (lst == NULL)
-		return ;
-	while (temp->next != NULL)
-	{
+// 	if (lst == NULL)
+// 		return ;
+// 	while (temp->next != NULL)
+// 	{
 		
-		del(lst);
-		free(lst);
-	}
-}
+// 		del(lst);
+// 		free(lst);
+// 	}
+// }

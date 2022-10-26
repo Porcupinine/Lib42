@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/22 13:45:57 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/25 18:27:46 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/26 17:59:08 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ static int	n_absolut(int n)
 	return (n);
 }
 
+void	write_nb(char *nb_char, long long nb, size_t nb_size)
+{
+	while (nb != 0)
+	{
+		nb_char[nb_size - 1] = (48 + n_absolut(nb % 10));
+		nb = nb / 10;
+		nb_size--;
+	}
+}
+
 char	*ft_itoa(int n)
 {
 	long long	nb;
@@ -63,11 +73,6 @@ char	*ft_itoa(int n)
 	}
 	if (n == 0)
 		nb_char[0] = '0';
-	while (nb != 0)
-	{
-		nb_char[nb_size - 1] = (48 + n_absolut(nb % 10));
-		nb = nb / 10;
-		nb_size--;
-	}
+	write_nb(nb_char, nb, nb_size);
 	return (nb_char);
 }
