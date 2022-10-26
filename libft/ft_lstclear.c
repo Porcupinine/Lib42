@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 18:45:16 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/26 21:15:25 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/26 21:20:43 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		return ;
 	while (*lst != NULL)
 	{
-		temp = lst->next;
-		del(lst->content);
-		free(lst);
+		del((*lst)->content);
+		temp = *lst;
+		*lst = temp->next;
+		free(temp);
 	}
 }
