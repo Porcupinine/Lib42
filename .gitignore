@@ -2,3 +2,4 @@ libft/*.o
 libft/*.a
 libft/build
 libft/testall
+.DS_Store
