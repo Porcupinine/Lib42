@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/25 19:17:35 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/26 21:21:08 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/27 21:57:45 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ NULL if the allocation fails.*/
 // {
 // 	while (lst->next != NULL)
 // 	{
-		
 // 	}
 // }

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 14:14:55 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/25 18:26:18 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/27 22:12:48 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (s == NULL)
 		return (NULL);
 	s_len = ft_strlen(s);
+	if (s_len == 0)
+		return (NULL);
 	if (start > s_len)
 		final_string_len = 0;
 	else
