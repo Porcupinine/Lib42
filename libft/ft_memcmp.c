@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 19:10:01 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/22 13:06:15 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/28 18:19:14 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		else
 			return (alias1[count] - alias2[count]);
 	}
-	if (count < n)
-		return (alias1[count] - alias2[count]);
+	// if (count < n)
+	// 	return (alias1[count] - alias2[count]);
 	return (0);
 }
