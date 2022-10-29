@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   ft_lstdelone.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/08 16:54:47 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:51:18 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/10/23 19:02:17 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/10/25 18:55:44 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The bzero() function erases the data in the n bytes of the memory starting 
-at the location pointed to by s, by writing zeros (bytes containing '\0') 
-to that area. 
-Returns nothing */
+/*Takes as a parameter a node and frees the memory of
+the node’s content using the function ’del’ given
+as a parameter and free the node. The memory of
+’next’ must not be freed.*/
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	size_t	count;
-	char	*alias;
-
-	count = 0;
-	alias = (char *) s;
-	while (count < n)
-	{
-		alias[count] = '\0';
-		count++;
-	}
+	if (lst == NULL)
+		return ;
+	del(lst->content);
+	free(lst);
 }

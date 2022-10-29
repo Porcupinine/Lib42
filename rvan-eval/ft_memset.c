@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/08 16:54:47 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:51:18 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/10/08 16:24:06 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/10/09 21:52:09 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The bzero() function erases the data in the n bytes of the memory starting 
-at the location pointed to by s, by writing zeros (bytes containing '\0') 
-to that area. 
-Returns nothing */
+/*The memset() function fills the first n bytes of the memory area pointed to 
+by s with the constant byte c.
+The memset() function returns a pointer to the memory area s.*/
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	size_t	count;
 	char	*alias;
 
+	alias = s;
 	count = 0;
-	alias = (char *) s;
 	while (count < n)
 	{
-		alias[count] = '\0';
+		alias[count] = c;
 		count++;
 	}
+	return (s);
 }

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   ft_lstlast.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/08 16:54:47 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:51:18 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/10/23 18:02:40 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/10/23 18:41:54 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The bzero() function erases the data in the n bytes of the memory starting 
-at the location pointed to by s, by writing zeros (bytes containing '\0') 
-to that area. 
-Returns nothing */
+/*Returns the last node of the list.*/
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	size_t	count;
-	char	*alias;
-
-	count = 0;
-	alias = (char *) s;
-	while (count < n)
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
 	{
-		alias[count] = '\0';
-		count++;
+		lst = lst->next;
 	}
+	return (lst);
 }

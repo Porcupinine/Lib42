@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   ft_lstnew.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/08 16:54:47 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:51:18 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/10/23 16:33:20 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/10/29 21:57:28 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The bzero() function erases the data in the n bytes of the memory starting 
-at the location pointed to by s, by writing zeros (bytes containing '\0') 
-to that area. 
-Returns nothing */
+/*Allocates (with malloc(3)) and returns a new node.
+The member variable ’content’ is initialized with
+the value of the parameter ’content’. The variable
+’next’ is initialized to NULL.
+return new node*/
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	count;
-	char	*alias;
+	t_list	*new_item;
 
-	count = 0;
-	alias = (char *) s;
-	while (count < n)
-	{
-		alias[count] = '\0';
-		count++;
-	}
+	new_item = ft_calloc(1, sizeof(t_list));
+	if (new_item == NULL)
+		return (NULL);
+	new_item->content = content;
+	new_item->next = NULL;
+	return (new_item);
 }

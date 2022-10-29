@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   ft_lstadd_back.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/08 16:54:47 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:51:18 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/10/23 18:19:48 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/10/23 20:49:29 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The bzero() function erases the data in the n bytes of the memory starting 
-at the location pointed to by s, by writing zeros (bytes containing '\0') 
-to that area. 
-Returns nothing */
+/*Adds the node ’new’ at the end of the list.*/
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new_node)
 {
-	size_t	count;
-	char	*alias;
+	t_list	*last_node;
 
-	count = 0;
-	alias = (char *) s;
-	while (count < n)
+	if (new_node == NULL)
+		return ;
+	else if (*lst == NULL)
+		*lst = new_node;
+	else
 	{
-		alias[count] = '\0';
-		count++;
+		last_node = ft_lstlast(*lst);
+		last_node->next = new_node;
 	}
 }

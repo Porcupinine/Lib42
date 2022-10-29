@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 19:47:08 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 19:00:19 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/29 11:59:14 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new_node);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
-// t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	*ft_memchr(const void *s, int c, size_t n);
 
 #endif

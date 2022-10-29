@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 16:54:47 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:51:18 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/09 21:50:32 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@ at the location pointed to by s, by writing zeros (bytes containing '\0')
 to that area. 
 Returns nothing */
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)

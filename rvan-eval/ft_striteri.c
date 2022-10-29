@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   ft_striteri.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/08 16:54:47 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:51:18 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/10/23 00:17:18 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/10/27 21:44:54 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The bzero() function erases the data in the n bytes of the memory starting 
-at the location pointed to by s, by writing zeros (bytes containing '\0') 
-to that area. 
-Returns nothing */
+/*Applies the function ’f’ on each character of
+the string passed as argument, passing its index
+as first argument. Each character is passed by
+address to ’f’ to be modified if necessary.
+*/
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	count;
-	char	*alias;
+	int		count;
+	int		s_len;
 
 	count = 0;
-	alias = (char *) s;
-	while (count < n)
+	s_len = ft_strlen(s);
+	while (count < s_len)
 	{
-		alias[count] = '\0';
+		f(count, s + count);
 		count++;
 	}
 }
