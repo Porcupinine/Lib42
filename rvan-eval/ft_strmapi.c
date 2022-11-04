@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/22 23:45:00 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/23 00:40:40 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 18:29:58 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int		count;
 
 	count = 0;
-	str = ft_calloc((ft_strlen(s) +1), sizeof(char));
+	str = malloc((ft_strlen(s) +1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (s[count] != '\0')

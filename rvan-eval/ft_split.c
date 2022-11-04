@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/20 13:59:41 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 21:54:29 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 18:23:55 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,21 @@ static char	*get_string(char *s, char c, int *count_str)
 	return (str);
 }
 
+static int	string_malloc_fail(char **arr, int count_arr)
+{
+	if (arr[count_arr] == NULL)
+	{
+		while (count_arr >= 0)
+		{
+			free(arr[count_arr]);
+			count_arr--;
+		}
+		free(arr);
+		return (0);
+	}
+	return (1);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		words;
@@ -72,15 +87,8 @@ char	**ft_split(char const *s, char c)
 	while (count_arr < words)
 	{
 		arr[count_arr] = get_string((char *)s, c, &count_str);
-		if (!arr[count_arr])
-		{
-			while (count_arr >= 0)
-			{
-				free(arr[count_arr]);
-				count_arr--;
-			} 
-			return (free(arr), NULL);
-		}
+		if (string_malloc_fail(arr, count_arr) == 0)
+			return (NULL);
 		count_arr++;
 	}
 	arr[count_arr] = NULL;

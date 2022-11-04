@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 14:14:55 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/25 18:26:18 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 18:29:27 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		final_string_len = s_len - start;
 	if (final_string_len > len)
 		final_string_len = len;
-	sub = ft_calloc((final_string_len + 1), sizeof(char));
+	sub = malloc((final_string_len + 1) * sizeof(char));
 	if (sub == NULL)
 		return (NULL);
 	ft_strlcpy(sub, &(s[start]), final_string_len + 1);

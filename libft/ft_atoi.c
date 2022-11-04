@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/16 20:58:58 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/22 19:54:32 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 21:32:35 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ return The converted value.*/
 
 #include "libft.h"
 
-static int	deal_isspace_issign(char *a, int *count, int *count_m, int *count_p)
+static int	deal_isspace_issign(char *a, int *count, int *count_m)
 {
 	while (a[*count] == ' ' || a[*count] == '\t'
 		|| a[*count] == '\r' || a[*count] == '\n'
@@ -38,7 +38,6 @@ static int	deal_isspace_issign(char *a, int *count, int *count_m, int *count_p)
 		if (a[*count + 1] == '+')
 			return (0);
 		(*count)++;
-		(*count_p)++;
 	}
 	return (1);
 }
@@ -49,14 +48,12 @@ int	ft_atoi(const char *nptr)
 	char	*alias;
 	int		nbr;
 	int		count_m;
-	int		count_p;
 
 	alias = (char *) nptr;
 	count = 0;
 	count_m = 0;
 	nbr = 0;
-	count_p = 0;
-	if (deal_isspace_issign(alias, &count, &count_m, &count_p) == 0)
+	if (deal_isspace_issign(alias, &count, &count_m) == 0)
 		return (0);
 	while (ft_isdigit(alias[count]) != 0)
 	{

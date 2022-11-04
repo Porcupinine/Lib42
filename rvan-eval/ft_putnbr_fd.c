@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:22:11 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/25 19:07:29 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 18:31:54 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ fd: The file descriptor on which to write.*/
 
 #include "libft.h"
 
-long long int	exponential(long long x, long long n)
+long int	exponential(long x, long n)
 {
-	long long int	i;
-	long long int	number;
+	long int	i;
+	long int	number;
 
 	number = 1;
 	i = 0;
@@ -32,41 +32,30 @@ long long int	exponential(long long x, long long n)
 	return (number);
 }
 
-void	ft_putnbr_fd(int toconvert, int fd)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	long long int	digit;
-	long long int	n;
-	long long int	exp;
-	long long int	original;
-	long long int	toconvertlong;
+	long int	digit;
+	long int	n;
+	long int	exp;
+	long int	original;
+	long int	nblong;
 
-	toconvertlong = toconvert;
-	if (toconvertlong < 0)
+	nblong = nb;
+	if (nblong < 0)
 	{
 		ft_putchar_fd('-', fd);
-		toconvertlong = toconvertlong * (-1);
+		nblong = nblong * (-1);
 	}
-	original = toconvertlong;
+	original = nblong;
 	n = 10;
 	while (n >= 1)
 	{
 		exp = exponential(10, n);
-		digit = (toconvertlong / exp);
+		digit = (nblong / exp);
 		if (original > exp)
 			ft_putchar_fd((digit + 48), fd);
-		toconvertlong = toconvertlong - (digit * exp);
+		nblong = nblong - (digit * exp);
 		n--;
 	}
-	ft_putchar_fd((toconvertlong + 48), fd);
+	ft_putchar_fd((nblong + 48), fd);
 }
-
-// void	ft_putnbr_fd(int n, int fd)
-// {
-// 	char	*number;
-
-// 	number = ft_itoa(n);
-// 	if (number == NULL)
-// 		return ;
-// 	ft_putstr_fd(number, fd);
-// 	free(number);
-// }

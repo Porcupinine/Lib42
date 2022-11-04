@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putstr_fd.c                                     :+:    :+:            */
+/*   gt_next_line.h                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/17 17:01:25 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/31 21:39:04 by lpraca-l      ########   odam.nl         */
+/*   Created: 2022/11/04 19:18:21 by lpraca-l      #+#    #+#                 */
+/*   Updated: 2022/11/04 19:18:22 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Outputs the string ’s’ to the given file
-descriptor.s: The string to output.
-fd: The file descriptor on which to write.*/
-
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
-}

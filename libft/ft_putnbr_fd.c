@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:22:11 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/25 19:07:29 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 21:37:53 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,3 @@ void	ft_putnbr_fd(int toconvert, int fd)
 	}
 	ft_putchar_fd((toconvertlong + 48), fd);
 }
-
-// void	ft_putnbr_fd(int n, int fd)
-// {
-// 	char	*number;
-
-// 	number = ft_itoa(n);
-// 	if (number == NULL)
-// 		return ;
-// 	ft_putstr_fd(number, fd);
-// 	free(number);
-// }

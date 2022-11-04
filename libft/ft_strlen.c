@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/08 16:19:41 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/21 16:39:20 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 21:41:39 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ size_t	ft_strlen(const char *c)
 
 	count = 0;
 	while (c[count] != '\0')
-	{
 		count++;
-	}
 	return (count);
 }

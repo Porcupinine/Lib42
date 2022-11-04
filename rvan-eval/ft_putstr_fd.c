@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:01:25 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:04:53 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 18:31:15 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,5 @@ fd: The file descriptor on which to write.*/
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	count;
-
-	count = 0;
-	while (s[count] != '\0')
-	{
-		ft_putchar_fd(s[count], fd);
-		count++;
-	}
+	write(fd, s, ft_strlen(s));
 }

@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 21:24:49 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/22 19:56:16 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 18:28:45 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		else
 			return (alias1[count] - alias2[count]);
 	}
-	if (count != n)
-		return (alias1[count] - alias2[count]);
 	return (0);
 }

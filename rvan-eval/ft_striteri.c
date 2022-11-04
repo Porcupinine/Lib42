@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 00:17:18 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/27 21:44:54 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 18:27:43 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ address to ’f’ to be modified if necessary.
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	int		count;
-	int		s_len;
 
 	count = 0;
-	s_len = ft_strlen(s);
-	while (count < s_len)
+	while (s[count] != '\0')
 	{
 		f(count, s + count);
 		count++;

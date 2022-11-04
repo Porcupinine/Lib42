@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/20 13:59:41 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/25 18:11:22 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/10/31 21:29:17 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ The array of new strings resulting from the split.
 NULL if the allocation fails.*/
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	count_words(char const *s, char c)
 {
@@ -56,12 +55,27 @@ static char	*get_string(char *s, char c, int *count_str)
 	return (str);
 }
 
+static int	string_malloc_fail(char **arr, int count_arr)
+{
+	if (arr[count_arr] == NULL)
+	{
+		while (count_arr >= 0)
+		{
+			free(arr[count_arr]);
+			count_arr--;
+		}
+		free(arr);
+		return (0);
+	}
+	return (1);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	int					words;
-	char				**arr;
-	int					count_str;
-	int					count_arr;
+	int		words;
+	char	**arr;
+	int		count_str;
+	int		count_arr;
 
 	count_str = 0;
 	count_arr = 0;
@@ -72,6 +86,8 @@ char	**ft_split(char const *s, char c)
 	while (count_arr < words)
 	{
 		arr[count_arr] = get_string((char *)s, c, &count_str);
+		if (string_malloc_fail(arr, count_arr) == 0)
+			return (NULL);
 		count_arr++;
 	}
 	arr[count_arr] = NULL;
