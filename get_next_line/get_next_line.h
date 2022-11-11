@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 19:18:21 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/11/06 01:00:44 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/11/09 19:43:05 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
  * read, or an error occurred
  */
 char	*get_next_line(int fd);
-
-/**
- * @brief The strdup() function allocates sufficient memory for a copy of the
- *string s1, does the copy, and returns a pointer to it.  The pointer may
- *subsequently be used as an argument to the function free(3).
- * 
- * @param s1 
- * @return If insufficient memory is available, NULL is returned and errno is 
- * set to ENOMEM 
- */
-char	*ft_strdup(const char *s1);
 
 /**
  * @brief strlcpy() and strlcat() functions copy and concatenate strings with

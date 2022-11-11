@@ -1,0 +1,32 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "build",
+            "command": "/usr/bin/gcc-9",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-g",
+                "${fileDirname}/get_next_line.c",
+                "${fileDirname}/get_next_line_utils.c",
+                "-o",
+                "${fileDirname}/get_next_line"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: /usr/bin/gcc-9"
+        }
+    ],
+    "version": "2.0.0"
+}
