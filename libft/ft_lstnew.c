@@ -22,7 +22,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new_item;
 
-	new_item = ft_calloc(1, sizeof(t_list));
+	new_item = malloc(sizeof(t_list));
 	if (new_item == NULL)
 		return (NULL);
 	new_item->content = content;

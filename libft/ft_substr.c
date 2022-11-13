@@ -25,8 +25,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (s == NULL)
 		return (NULL);
 	s_len = ft_strlen(s);
-	if (s_len == 0)
-		return (NULL);
+	// if (len == 0)
+		// return (NULL);
+		// s_len = 0;
 	if (start > s_len)
 		final_string_len = 0;
 	else

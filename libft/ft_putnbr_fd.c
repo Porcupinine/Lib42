@@ -52,7 +52,7 @@ void	ft_putnbr_fd(int toconvert, int fd)
 	{
 		exp = exponential(10, n);
 		digit = (toconvertlong / exp);
-		if (original > exp)
+		if (original >= exp)
 			ft_putchar_fd((digit + 48), fd);
 		toconvertlong = toconvertlong - (digit * exp);
 		n--;
