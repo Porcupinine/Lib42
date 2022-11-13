@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 19:17:01 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/11/06 01:24:48 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2022/11/09 19:43:59 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,40 +43,52 @@ behavior if you want to.
 #include "get_next_line.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 45
 #endif
 
-static void	get_line(char *buff, char **lines)
+static void	get_line(char *buff, char **lines, size_t *len)
 {
-	static int	len;
-	int			start;
+	size_t		start;
 	char		*temp;
 
-	start = len;
-	while (buff[len] != '\n' && buff[len] != '\0')
-		len++;
-	temp = malloc((len - start) * sizeof(char));
+	start = *len;
+	while (buff[*len] != '\n' && buff[*len] != '\0')
+		(*len)++;
+	temp = malloc((*len - start + 1) * sizeof(char));
 	if (temp == NULL)
 		return ;
-	ft_strlcpy(temp, &buff[start], len);
-	len++;
-	*lines = ft_strjoin((const char *) lines, (const char *) temp);
+	ft_strlcpy(temp, &buff[start], (*len + 1));
+	(*len)++;
+	*lines = ft_strjoin((const char *) *lines, (const char *) temp);
 	free(temp);
 }
+//como pegar tamanho de lines
 
 char	*get_next_line(int fd)
 {
 	char	buff[BUFFER_SIZE +1];
 	char	*lines;
+	size_t	len;
 
-	while (read(fd, buff, BUFFER_SIZE) != 0)
-	{
-		get_line(buff, &lines);
-	}
+	len = 0;
+	read(fd, buff, BUFFER_SIZE);
+	while 
+	(buff[len] != '\0')
+		get_line(buff, &lines, &len);
 	return (lines);
 }
 
-// int	main(void)
-// {
-// 	get_next_line(0);
-// }
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int	main(void)
+{
+	int	fd;
+	char *lines;
+	fd = open("testfile.txt", O_RDONLY);
+	lines = get_next_line(fd);
+	printf("%s\n", lines);
+	return (1);
+}
