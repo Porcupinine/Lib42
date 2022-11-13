@@ -3,3 +3,5 @@ libft/*.a
 libft/build
 libft/testall
 .DS_Store
+get_next_line/.vscode
+.vscode/
