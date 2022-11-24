@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 19:17:01 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/11/14 20:16:46 by laura         ########   odam.nl         */
+/*   Updated: 2022/11/14 22:26:02 by laura         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ behavior if you want to.
 // 		get_line(buff, &lines, &len);
 // 	return (lines);
 // }
+
+
 // static void	get_line(char *buff, char **lines, size_t *len)
 // {
 // 	size_t		start;
@@ -90,79 +92,54 @@ behavior if you want to.
 // 	ft_strlcpy(*lines, &buff[start], (*len + 1));
 // 	(*len)++;
 // }
-static int	get_line(char *buff, char **lines, int buff_len, size_t *len)
-{
-	size_t	start;
-	char	*temp;
-
-	start = *len;
-	while (buff[*len] != '\n' && buff[*len] != '\0' && *len < buff_len)
-		(*len)++;
-	if (*lines == NULL)
-	{
-		*lines = malloc((*len - start + 1) * sizeof(char));
-		if (lines == NULL)
-			return (0);
-		ft_strlcpy(*lines, buff + start, (*len + 1 - start));
-	}
-	else
-	{
-		temp = *lines;
-		*lines[*len + 1] = '\0';
-		*lines = ft_strjoin(*lines, &(buff[start]), (*len - start +1));
-		free(temp);
-	}
-	if (buff[*len] == '\n')
-		return (2);
-	else
-		return (3);
-}
-
-int	finish_line(char *buff, char **lines, int buff_len, size_t *len)
-{
-	int	start;
-
-	start = len;
-	while (buff[*len] != '\n' && buff[*len] != '\0' && *len < buff_len)
-		(*len)++;
-	*lines = ft_strjoin(*lines, buff + start, len);
-	if (buff[*len + 1] == '\0')
-		return (1);
-	else if (buff[*len + 1] == '\n')
-		return (2);
-	else
-		return (3);
-}
 
 char	*get_next_line(int fd)
-
 {
-	static char		buff[BUFFER_SIZE];
+	char			buff[BUFFER_SIZE +1];
 	char			*lines;
 	static size_t	len = 0;
-	static int		buff_len = 0;
-	int				ret;
+	size_t			start;
+	static char		*stack = NULL;
 
-	ret = 0;
-	while (1)
-	{
-		if (len == buff_len)
-		{
-			buff_len = read(fd, buff, BUFFER_SIZE);
-			len = 0;
-		}
-		if (buff_len > 0)
-			ret = get_line(buff, &lines, buff_len, &len);
-		if (ret == 1 || ret == 2)
-			break ;
-	}
-	if (ret == 1)
-		lines[len + 1] = '\0';
+	start = len;
+	read(fd, buff, BUFFER_SIZE);
+	if (stack == NULL)
+		stack = buff;
 	else
+		stack = ft_strjoin(stack, buff);
+	if (stack[len] != '\0')
 	{
-		lines[len + 1] = '\n';
-		//len nao necessariamente leva em conta oque tinha no lines
-		len++;
+		while (stack[len] != '\n' && stack[len] != '\0')
+			(len)++;
+		lines = malloc((len - start + 1) * sizeof(char));
+		if (lines == NULL)
+			return (NULL);
+		ft_strlcpy(lines, (buff + start), (len - start + 1));
+		// len++;
 	}
 	return (lines);
+}
+
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int	main(void)
+{
+	int		fd;
+	char	*lines;
+
+	fd = open("testfile.txt", O_RDONLY);
+	lines = get_next_line(fd);
+	printf("%s\n", lines);
+	free(lines);
+	lines = get_next_line(fd);
+	printf("%s\n", lines);
+	free(lines);
+	lines = get_next_line(fd);
+	printf("%s\n", lines);
+	close(fd);
+	free(lines);
+	return (1);
 }

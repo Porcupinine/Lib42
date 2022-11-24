@@ -25,7 +25,7 @@
  * @param s2 second string
  * @return Returns the new string or NULL if the allocation fails. 
  */
-char	*ft_strjoin(char const *s1, char const *s2, size_t buff_len);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 /**
  * @brief Write a function that returns a line read from a file descriptor
@@ -64,5 +64,9 @@ size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize);
  *pointed to by s. 
  */
 size_t	ft_strlen(const char *c);
+
+size_t	ft_bufflen(const char *c);
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 #endif
