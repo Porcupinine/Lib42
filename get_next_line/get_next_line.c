@@ -100,22 +100,36 @@ static int	get_line(char *buff, char **lines, int buff_len, size_t *len)
 		(*len)++;
 	if (*lines == NULL)
 	{
-		*lines = malloc((*len - start + 1) * sizeof(char));
-		if (lines == NULL)
-			return (0);
-		ft_strlcpy(*lines, buff + start, (*len + 1 - start));
+		if (buff[*len] == '\n')
+		{
+			*lines = malloc((*len - start + 1) * sizeof(char));
+			if (lines == NULL)
+				return (0);
+			ft_strlcpy(*lines, buff + start, (*len - start + 1));
+			*len++;
+			return (2);
+		}
+		else {
+			*lines = malloc((*len - start) * sizeof(char));
+			if (lines == NULL)
+				return (0);
+			ft_strlcpy(*lines, buff + start, (*len - start));
+		}
 	}
 	else
 	{
 		temp = *lines;
 		*lines[*len + 1] = '\0';
-		*lines = ft_strjoin(*lines, &(buff[start]), (*len - start +1));
+		if (buff[*len] == '\n')
+		{
+			*lines = ft_strjoin(*lines, &(buff[start]), (*len - start + 1));
+			return(2);
+		}
+		else
+			*lines = ft_strjoin(*lines, &(buff[start]), (*len - start));
 		free(temp);
 	}
-	if (buff[*len] == '\n')
-		return (2);
-	else
-		return (3);
+	return (3);
 }
 
 int	finish_line(char *buff, char **lines, int buff_len, size_t *len)
@@ -153,16 +167,16 @@ char	*get_next_line(int fd)
 		}
 		if (buff_len > 0)
 			ret = get_line(buff, &lines, buff_len, &len);
-		if (ret == 1 || ret == 2)
+		if (ret == 2)
 			break ;
 	}
-	if (ret == 1)
-		lines[len + 1] = '\0';
-	else
-	{
-		lines[len + 1] = '\n';
-		//len nao necessariamente leva em conta oque tinha no lines
-		len++;
-	}
+//	if (ret == 1)
+//		lines[len + 1] = '\0';
+//	else
+//	{
+//		lines[len + 1] = '\n';
+//		//len nao necessariamente leva em conta oque tinha no lines bring this shit up
+//		len++;
+//	}
 	return (lines);
 }
