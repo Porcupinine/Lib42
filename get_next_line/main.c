@@ -8,17 +8,20 @@ int	main(void)
 {
     int		fd;
     char	*lines;
-
+	lines = NULL;
     fd = open("/home/laura/Documents/Codam/get_next_line/testfile.txt", O_RDONLY);
     lines = get_next_line(fd);
-    printf("%s\n", lines);
+    printf("%s", lines);
     free(lines);
+	lines=NULL;
     lines = get_next_line(fd);
-    printf("%s\n", lines);
+    printf("%s", lines);
+	free(lines);
+	lines=NULL;
+	lines = get_next_line(fd);
+	printf("%s", lines);
     free(lines);
-    lines = get_next_line(fd);
-    printf("%s\n", lines);
-    close(fd);
-    free(lines);
-    return (1);
+	lines=NULL;
+	close(fd);
+	return (1);
 }

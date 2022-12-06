@@ -46,6 +46,7 @@ char	*ft_strjoin(char const *s1, char const *s2, size_t buff_len_to_get)
 		counts1++;
 		counts2++;
 	}
+	join[counts1] = '\0';
 	return (join);
 }
 

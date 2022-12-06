@@ -90,62 +90,57 @@ behavior if you want to.
 // 	ft_strlcpy(*lines, &buff[start], (*len + 1));
 // 	(*len)++;
 // }
-static int	get_line(char *buff, char **lines, int buff_len, size_t *len)
+static int	get_line(char *buff, char **lines, size_t buff_len, size_t *len)
 {
 	size_t	start;
 	char	*temp;
+	size_t	line_size;
 
 	start = *len;
-	while (buff[*len] != '\n' && buff[*len] != '\0' && *len < buff_len)
+	while (*len < buff_len && buff[*len] != '\n' && buff[*len] != '\0')
 		(*len)++;
+	line_size = *len - start;
 	if (*lines == NULL)
 	{
-		if (buff[*len] == '\n')
-		{
-			*lines = malloc((*len - start + 1) * sizeof(char));
-			if (lines == NULL)
+		if (*len == buff_len) {
+			*lines = malloc((line_size +1) * sizeof(char));
+			if (*lines == NULL)
 				return (0);
-			ft_strlcpy(*lines, buff + start, (*len - start + 1));
-			*len++;
-			return (2);
+			ft_strlcpy(*lines, buff + start, line_size);
+			(*lines)[line_size] = '\0';
+			(*len)++;
 		}
-		else {
-			*lines = malloc((*len - start) * sizeof(char));
-			if (lines == NULL)
+		else if (buff[*len] == '\n' || buff[*len] == '\0')
+		{
+			if (buff[*len] == '\n') ++line_size;
+			*lines = malloc((line_size + 1) * sizeof(char));
+			if (*lines == NULL)
 				return (0);
-			ft_strlcpy(*lines, buff + start, (*len - start));
+			ft_strlcpy(*lines, buff + start, line_size);
+			(*lines)[line_size] = '\0';
+			(*len)++;
+			return (2);
 		}
 	}
 	else
 	{
 		temp = *lines;
-		*lines[*len + 1] = '\0';
-		if (buff[*len] == '\n')
+		if(*len < buff_len)
 		{
-			*lines = ft_strjoin(*lines, &(buff[start]), (*len - start + 1));
-			return(2);
+			(*lines) = ft_strjoin((*lines), &(buff[start]), line_size);
+			free(temp);
 		}
-		else
-			*lines = ft_strjoin(*lines, &(buff[start]), (*len - start));
-		free(temp);
+		if (buff[*len] == '\n' || buff[*len] == '\0')
+		{
+			if (buff[*len] == '\n') ++line_size;
+			(*lines) = ft_strjoin((*lines), &(buff[start]), line_size);
+//			(*lines)[line_size] = '\0';
+			(*len)++;
+			free(temp);
+			return (2);
+		}
 	}
 	return (3);
-}
-
-int	finish_line(char *buff, char **lines, int buff_len, size_t *len)
-{
-	int	start;
-
-	start = len;
-	while (buff[*len] != '\n' && buff[*len] != '\0' && *len < buff_len)
-		(*len)++;
-	*lines = ft_strjoin(*lines, buff + start, len);
-	if (buff[*len + 1] == '\0')
-		return (1);
-	else if (buff[*len + 1] == '\n')
-		return (2);
-	else
-		return (3);
 }
 
 char	*get_next_line(int fd)
@@ -154,9 +149,10 @@ char	*get_next_line(int fd)
 	static char		buff[BUFFER_SIZE];
 	char			*lines;
 	static size_t	len = 0;
-	static int		buff_len = 0;
+	static size_t	buff_len = 0;
 	int				ret;
 
+	lines = NULL;
 	ret = 0;
 	while (1)
 	{
