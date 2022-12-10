@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "get_next_line.h"
+#include <unistd.h>
 
 int	main(void)
 {
@@ -21,6 +22,18 @@ int	main(void)
 	lines = get_next_line(fd);
 	printf("%s", lines);
     free(lines);
+	lines = get_next_line(fd);
+	printf("%s", lines);
+	free(lines);
+	lines=NULL;
+	lines=NULL;
+	lines = get_next_line(fd);
+	printf("%s", lines);
+	free(lines);
+	lines=NULL;
+	lines = get_next_line(fd);
+	printf("%s", lines);
+	free(lines);
 	lines=NULL;
 	close(fd);
 	return (1);

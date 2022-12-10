@@ -43,53 +43,18 @@ behavior if you want to.
 #include "get_next_line.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 45
+# define BUFFER_SIZE 36
 #endif
 
-// static void	get_line(char *buff, char **lines, size_t *len)
-// {
-// 	size_t		start;
-// 	// char		*temp;
-
-// 	start = *len;
-// 	while (buff[*len] != '\n' && buff[*len] != '\0')
-// 		(*len)++;
-// 	*lines = malloc((*len - start + 1) * sizeof(char));
-// 	if (*lines == NULL)
-// 		return ;
-// 	// ft_strlcat(*lines, (buff + start), (*len +1));
-// 	ft_strlcpy(*lines, &buff[start], (*len + 1));
-// 	(*len)++;
-// 	// *lines = ft_strjoin((const char *) *lines, (const char *) temp);
-// 	// free(temp);
-// }
-//como pegar tamanho de lines
-
-// char	*get_next_line(int fd)
-// {
-// 	char			buff[BUFFER_SIZE +1];
-// 	char			*lines;
-// 	static size_t	len;
-
-// 	len = 0;
-// 	read(fd, buff, BUFFER_SIZE);
-// 	if (buff[len] != '\0')
-// 		get_line(buff, &lines, &len);
-// 	return (lines);
-// }
-// static void	get_line(char *buff, char **lines, size_t *len)
-// {
-// 	size_t		start;
-
-// 	start = *len;
-// 	while (buff[*len] != '\n' && buff[*len] != '\0')
-// 		(*len)++;
-// 	*lines = malloc((*len - start + 1) * sizeof(char));
-// 	if (*lines == NULL)
-// 		return ;
-// 	ft_strlcpy(*lines, &buff[start], (*len + 1));
-// 	(*len)++;
-// }
+/***
+ *
+ * @param buff What was last read from fd
+ * @param lines Where the function stores the line
+ * @param buff_len Size of the buff
+ * @param len Which interation we are inside the buff
+ * @return 0 if it fails, 3 if it doesn't find a new line or null
+ * terminator and 2 if it finds the new line or nnull terminator
+ */
 static int	get_line(char *buff, char **lines, size_t buff_len, size_t *len)
 {
 	size_t	start;
@@ -97,27 +62,21 @@ static int	get_line(char *buff, char **lines, size_t buff_len, size_t *len)
 	size_t	line_size;
 
 	start = *len;
-	while (*len < buff_len && buff[*len] != '\n' && buff[*len] != '\0')
+	while (*len < (buff_len) && buff[*len] != '\n' && buff[*len] != '\0')
 		(*len)++;
 	line_size = *len - start;
 	if (*lines == NULL)
 	{
-		if (*len == buff_len) {
-			*lines = malloc((line_size +1) * sizeof(char));
-			if (*lines == NULL)
-				return (0);
-			ft_strlcpy(*lines, buff + start, line_size);
-			(*lines)[line_size] = '\0';
+		if (*len == buff_len)
+		{
+			(*lines) = ft_strlcpy(buff + start, line_size);
 			(*len)++;
 		}
 		else if (buff[*len] == '\n' || buff[*len] == '\0')
 		{
-			if (buff[*len] == '\n') ++line_size;
-			*lines = malloc((line_size + 1) * sizeof(char));
-			if (*lines == NULL)
-				return (0);
-			ft_strlcpy(*lines, buff + start, line_size);
-			(*lines)[line_size] = '\0';
+			if (buff[*len] == '\n')
+				line_size++;
+			(*lines) = ft_strlcpy(buff + start, line_size);
 			(*len)++;
 			return (2);
 		}
@@ -125,16 +84,16 @@ static int	get_line(char *buff, char **lines, size_t buff_len, size_t *len)
 	else
 	{
 		temp = *lines;
-		if(*len < buff_len)
+		if (buff[*len] != '\n')
 		{
 			(*lines) = ft_strjoin((*lines), &(buff[start]), line_size);
 			free(temp);
 		}
-		if (buff[*len] == '\n' || buff[*len] == '\0')
+		else if (buff[*len] == '\n' || buff[*len] == '\0')
 		{
-			if (buff[*len] == '\n') ++line_size;
+			if (buff[*len] == '\n')
+				line_size++;
 			(*lines) = ft_strjoin((*lines), &(buff[start]), line_size);
-//			(*lines)[line_size] = '\0';
 			(*len)++;
 			free(temp);
 			return (2);
@@ -156,9 +115,11 @@ char	*get_next_line(int fd)
 	ret = 0;
 	while (1)
 	{
-		if (len == buff_len)
+		if (len >= buff_len)
 		{
 			buff_len = read(fd, buff, BUFFER_SIZE);
+			if (buff_len <= 0)
+				return (NULL);
 			len = 0;
 		}
 		if (buff_len > 0)
@@ -166,13 +127,5 @@ char	*get_next_line(int fd)
 		if (ret == 2)
 			break ;
 	}
-//	if (ret == 1)
-//		lines[len + 1] = '\0';
-//	else
-//	{
-//		lines[len + 1] = '\n';
-//		//len nao necessariamente leva em conta oque tinha no lines bring this shit up
-//		len++;
-//	}
 	return (lines);
 }

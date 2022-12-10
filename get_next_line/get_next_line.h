@@ -46,14 +46,12 @@ char	*get_next_line(int fd);
  *should be included in dstsize.
  *strlcpy() copies up to dstsize - 1 characters from the string src to dst,
  *NUL-terminating the result if dstsize is not 0.
- * 
- * @param dst desteny
+ *
  * @param src source
  * @param dstsize how much to copy
- * @return If the src and dst strings overlap, the behavior is undefined.
- *return the total length of the string they tried to createmake  
+ * @return the copied string
  */
-size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize);
+char	*ft_strlcpy(const char	*src, size_t dst_size);
 
 /**
  * @brief The strlen() function calculates the length of the string pointed to 

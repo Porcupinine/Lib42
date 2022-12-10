@@ -50,19 +50,22 @@ char	*ft_strjoin(char const *s1, char const *s2, size_t buff_len_to_get)
 	return (join);
 }
 
-size_t	ft_strlcpy(char	*dst, const char	*src, size_t dstsize)
+char	*ft_strlcpy(const char	*src, size_t dst_size)
 {
 	size_t	count;
 	char	*alias;
+	char	*dst;
 
 	alias = (char *) src;
 	count = 0;
-	if (dstsize == 0)
-		return (dstsize);
-	while (count < dstsize)
+	dst = malloc((dst_size + 1) * sizeof(char));
+	if (dst == NULL)
+		return (NULL);
+	while (count < dst_size)
 	{
 		dst[count] = alias[count];
 		count++;
 	}
-	return (dstsize);
+	dst[count] = '\0';
+	return (dst);
 }
