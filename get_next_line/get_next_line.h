@@ -25,7 +25,7 @@
  * @param s2 second string
  * @return Returns the new string or NULL if the allocation fails. 
  */
-char	*ft_strjoin(char const *s1, char const *s2, size_t buff_len);
+char	*ft_strjoin(char const *s1, char const *s2, long buff_len);
 
 /**
  * @brief Write a function that returns a line read from a file descriptor
@@ -51,7 +51,7 @@ char	*get_next_line(int fd);
  * @param dstsize how much to copy
  * @return the copied string
  */
-char	*ft_strlcpy(const char	*src, size_t dst_size);
+char	*ft_strlcpy(const char	*src, long dst_size);
 
 /**
  * @brief The strlen() function calculates the length of the string pointed to 
@@ -61,6 +61,8 @@ char	*ft_strlcpy(const char	*src, size_t dst_size);
  * @return The strlen() function returns the number of bytes in the string 
  *pointed to by s. 
  */
-size_t	ft_strlen(const char *c);
+int		ft_strlen(const char *c);
+
+void	*ft_memset(void *s, int c, long n);
 
 #endif

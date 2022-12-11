@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *c)
+int	ft_strlen(const char *c)
 {
-	size_t	count;
+	long	count;
 
 	count = 0;
 	while (c[count] != '\0')
@@ -22,12 +22,12 @@ size_t	ft_strlen(const char *c)
 	return (count);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2, size_t buff_len_to_get)
+char	*ft_strjoin(char const *s1, char const *s2, long buff_len_to_get)
 {
-	size_t	counts1;
-	char	*join;
-	size_t	len;
-	size_t	counts2;
+	long		counts1;
+	char		*join;
+	long		len;
+	long		counts2;
 
 	counts1 = 0;
 	counts2 = 0;
@@ -50,9 +50,9 @@ char	*ft_strjoin(char const *s1, char const *s2, size_t buff_len_to_get)
 	return (join);
 }
 
-char	*ft_strlcpy(const char	*src, size_t dst_size)
+char	*ft_strlcpy(const char	*src, long dst_size)
 {
-	size_t	count;
+	long	count;
 	char	*alias;
 	char	*dst;
 
@@ -68,4 +68,19 @@ char	*ft_strlcpy(const char	*src, size_t dst_size)
 	}
 	dst[count] = '\0';
 	return (dst);
+}
+
+void	*ft_memset(void *s, char c, long n)
+{
+	long	count;
+	char	*alias;
+
+	alias = s;
+	count = 0;
+	while (count < n)
+	{
+		alias[count] = c;
+		count++;
+	}
+	return (s);
 }

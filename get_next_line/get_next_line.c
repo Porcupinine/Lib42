@@ -43,7 +43,7 @@ behavior if you want to.
 #include "get_next_line.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 36
+# define BUFFER_SIZE 10
 #endif
 
 /***
@@ -53,13 +53,13 @@ behavior if you want to.
  * @param buff_len Size of the buff
  * @param len Which interation we are inside the buff
  * @return 0 if it fails, 3 if it doesn't find a new line or null
- * terminator and 2 if it finds the new line or nnull terminator
+ * terminator and 2 if it finds the new line or null terminator
  */
-static int	get_line(char *buff, char **lines, size_t buff_len, size_t *len)
+static int	get_line(char *buff, char **lines, long buff_len, long *len)
 {
-	size_t	start;
+	int		start;
 	char	*temp;
-	size_t	line_size;
+	int		line_size;
 
 	start = *len;
 	while (*len < (buff_len) && buff[*len] != '\n' && buff[*len] != '\0')
@@ -68,10 +68,7 @@ static int	get_line(char *buff, char **lines, size_t buff_len, size_t *len)
 	if (*lines == NULL)
 	{
 		if (*len == buff_len)
-		{
 			(*lines) = ft_strlcpy(buff + start, line_size);
-			(*len)++;
-		}
 		else if (buff[*len] == '\n' || buff[*len] == '\0')
 		{
 			if (buff[*len] == '\n')
@@ -84,7 +81,7 @@ static int	get_line(char *buff, char **lines, size_t buff_len, size_t *len)
 	else
 	{
 		temp = *lines;
-		if (buff[*len] != '\n')
+		if (*len == buff_len )
 		{
 			(*lines) = ft_strjoin((*lines), &(buff[start]), line_size);
 			free(temp);
@@ -107,9 +104,9 @@ char	*get_next_line(int fd)
 {
 	static char		buff[BUFFER_SIZE];
 	char			*lines;
-	static size_t	len = 0;
-	static size_t	buff_len = 0;
-	int				ret;
+	static long		len = 0;
+	static long		buff_len = 0;
+	long				ret;
 
 	lines = NULL;
 	ret = 0;
@@ -118,8 +115,13 @@ char	*get_next_line(int fd)
 		if (len >= buff_len)
 		{
 			buff_len = read(fd, buff, BUFFER_SIZE);
-			if (buff_len <= 0)
+			if (buff_len == 0)
+				return (lines);
+			if (buff_len < 0)
+			{
+				ft_memset(buff, 0, BUFFER_SIZE);
 				return (NULL);
+			}
 			len = 0;
 		}
 		if (buff_len > 0)
