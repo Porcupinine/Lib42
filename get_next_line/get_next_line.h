@@ -63,6 +63,6 @@ char	*ft_strlcpy(const char	*src, long dst_size);
  */
 int		ft_strlen(const char *c);
 
-void	*ft_memset(void *s, int c, long n);
+void	*ft_memset(void *s, char c, long n);
 
 #endif

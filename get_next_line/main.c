@@ -10,7 +10,7 @@ int	main(void)
     int		fd;
     char	*lines;
 	lines = NULL;
-    fd = open("/home/laura/Documents/Codam/get_next_line/testfil61e.txt", O_RDONLY);
+    fd = open("/home/laura/Documents/Codam/get_next_line/testfile.txt", O_RDONLY);
     lines = get_next_line(fd);
     printf("%s", lines);
     free(lines);

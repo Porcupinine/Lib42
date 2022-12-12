@@ -114,12 +114,14 @@ char	*get_next_line(int fd)
 	{
 		if (len >= buff_len)
 		{
+			ft_memset(buff, 0, BUFFER_SIZE);
 			buff_len = read(fd, buff, BUFFER_SIZE);
 			if (buff_len == 0)
 				return (lines);
 			if (buff_len < 0)
 			{
 				ft_memset(buff, 0, BUFFER_SIZE);
+				free(lines);
 				return (NULL);
 			}
 			len = 0;
