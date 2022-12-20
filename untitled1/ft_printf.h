@@ -17,8 +17,12 @@
 #ifndef UNTITLED1_FT_PRINTF_H
 #define UNTITLED1_FT_PRINTF_H
 
-void ft_char(char c, int *char_count);
-void ft_string(char *str, int *char_count);
+int ft_char(char c);
+int ft_string(char *str);
+int ft_num(int nb);
+int ft_up_hex(unsigned int HEX);
+int ft_lw_hex(unsigned int hex);
+
 
 
 #endif //UNTITLED1_FT_PRINTF_H

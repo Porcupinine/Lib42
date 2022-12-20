@@ -10,52 +10,78 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-// Created by laura on 19/12/22.
-//
+/*%c Prints a single character.
+• %s Prints a string (as defined by the common C convention).
+• %p The void * pointer argument has to be printed in hexadecimal format.
+• %d Prints a decimal (base 10) number.
+• %i Prints an integer in base 10.
+• %u Prints an unsigned decimal (base 10) number.
+• %x Prints a number in hexadecimal (base 16) lowercase format.
+• %X Prints a number in hexadecimal (base 16) uppercase format.
+• %% Prints a percent sign.
+ *
+ * Don’t implement the buffer management of the original printf().
+• Your function has to handle the following conversions: cspdiuxX%
+• Your function will be compared against the original printf().
+• You must use the command ar to create your library.
+Using the libtool command is forbidden.
+• Your libftprintf.a has to be created at the root of your repository.
+
+ ERROR return -1 else return number of char
+ */
+
 #include <stdarg.h>
 #include <unistd.h>
 #include "ft_printf.h"
+#include "libft-winner/libft.h"
 
-void ft_putchar(char c)
+int ft_type(va_list content, char type)
 {
-	write(1, c, 1);
-}
+    int char_counter;
 
-void ft_type(char type, int *char_counter)
-{
-	if (type == 'c')
-
-		ft_type(va_arg(type,char), &char_counter);
-		ft_char(, );
-	else if (type == 's')
-
-		ft_type(va_arg(type,char*), &char_counter);
-		ft_string();
-	else if (type == 'p')
-
-		ft_type(va_arg(type,void*), &char_counter);
-		ft_poiter();
+    char_counter = 0;
+    if (type == 'c')
+        char_counter += ft_char(va_arg(content, char));
+    else if (type == 's')
+        char_counter += ft_string(va_arg(content, char*));
+    else if (type == 'p')
+        char_counter += ft_pointer(va_arg(content, void*));
+    else if (type == 'd' || type == 'i')
+        char_counter += ft_num(va_arg(content, int));
+    else if (type == 'u')
+        char_counter += ft_int(va_arg(content, unsigned int));
+    else if (type == 'x')
+        char_counter += ft_up_hex(va_arg(content, unsigned int));
+    else if (type == 'X')
+        char_counter += ft_lw_hex(va_arg(content, unsigned int));
+    else if (type == '%')
+    {
+        char_counter += 1;
+        ft_putchar_fd(type, 1);
+    }
+    return (char_counter);
 }
 
 int ft_printf(const char *str, ...)
 {
-	int *char_counter;
-	va_list type;
+	int index_counter;
+    int char_counter;
+	va_list content;
 
+    index_counter = 0;
 	char_counter = 0;
-	while (str[char_counter] != '\0')
+	while (str[index_counter] != '\0')
 	{
-		if (str[char_counter] == '%')
+		if (str[index_counter] == '%')
 		{
-			//achar que tipo de coisa vai ser imprimida
-			//adicionar ao contador
+			char_counter += ft_type(content, str[index_counter + 1]);
 		}
 		else {
-			ft_putchar(str[char_counter]);
-			char_counter++;
+			ft_putchar_fd(str[index_counter], 1);
+			index_counter++;
+            char_counter++;
 		}
 	}
-	return (char_counter);
+	return (index_counter);
 
 }

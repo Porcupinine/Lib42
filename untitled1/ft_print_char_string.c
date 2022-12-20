@@ -15,19 +15,25 @@
 //
 #include <unistd.h>
 
-void ft_char(char c, int *char_count)
+int ft_char(char c)
 {
+    int char_count;
+
+    char_count =0;
 	write(1, &c, 1);
 	char_count++;
+    return (char_count);
 }
 
-void ft_string(char *str, int *char_count)
+int ft_string(char *str)
 {
-	int count;
+	int char_count;
 
-	count = 0;
-	while (str[count] != '\0')
+    char_count = 0;
+	while (str[char_count] != '\0')
 	{
-		ft_char(str[count], char_count);
+		ft_char(str[char_count]);
 	}
+    return (char_count);
 }
+

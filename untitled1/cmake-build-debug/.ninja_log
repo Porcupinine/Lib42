@@ -1,0 +1,8 @@
+# ninja log v5
+92	127	1671531758000000000	CMakeFiles/untitled1.dir/ft_print_dig_hex.c.o	bd5c85855d7f4672
+1	102	1671531758000000000	CMakeFiles/untitled1.dir/ft_print_char_string.c.o	78ac80a466ea1b19
+0	92	1671531758000000000	CMakeFiles/untitled1.dir/main.c.o	529b5e2d8c5eac32
+13	300	1671564293000000000	build.ninja	acc42a806dbbe914
+1	112	1671564293000000000	CMakeFiles/untitled1.dir/ft_print_dig_hex.c.o	bd5c85855d7f4672
+1	112	1671564293000000000	CMakeFiles/untitled1.dir/ft_print_char_string.c.o	78ac80a466ea1b19
+1	87	1671564359000000000	CMakeFiles/untitled1.dir/ft_pritf.c.o	181cf05f7e589611
