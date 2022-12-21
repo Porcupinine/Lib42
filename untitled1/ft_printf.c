@@ -38,50 +38,52 @@ int ft_type(va_list content, char type)
     int i;
 
     i = 0;
-    if (type == 'c')
+    if (type == '%')
+    {
+        i++;
+        ft_putchar_fd(type, 1);
+    }
+    else if (type == 'c')
         i += ft_char(va_arg(content, int));
     else if (type == 's')
         i += ft_string(va_arg(content, char*));
     else if (type == 'p')
         i += ft_pointer(va_arg(content, void*));
     else if (type == 'd' || type == 'i')
-		i += ft_putnbr_base(va_arg(content, long long), "0123456789");
+		i += ft_putnbr_base(va_arg(content, int), "0123456789");
     else if (type == 'u')
 		i += ft_putnbr_base(va_arg(content, unsigned long long), "0123456789");
     else if (type == 'x')
 		i += ft_putnbr_base(va_arg(content, long long), "0123456789abcdef");
     else if (type == 'X')
 		i += ft_putnbr_base(va_arg(content, long long), "0123456789ABCDEF");
-    else if (type == '%')
-    {
-        i++;
-        ft_putchar_fd(type, 1);
-    }
     return (i);
 }
 
 int ft_printf(const char *str, ...)
 {
-	int     index_counter;
+	int     i;
     int     char_counter;
 	va_list content;
 
-    index_counter = 0;
+    i = 0;
 	char_counter = 0;
 	va_start(content, str);
-	while (str[index_counter] != '\0')
+	while (str[i] != '\0')
 	{
-		if (str[index_counter] == '%')
+		if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i +1]))
 		{
-			char_counter += ft_type(content, str[index_counter + 1]);
-			index_counter++;
-			index_counter++;
+			char_counter += ft_type(content, str[i + 1]);
+			i += 2;
+            if (str[i] == '%')
+                i++;
 		}
 		else {
-			ft_putchar_fd(str[index_counter], 1);
-			index_counter++;
+			ft_putchar_fd(str[i], 1);
+			i++;
             char_counter++;
 		}
 	}
+    va_end(content);
 	return (char_counter);
 }

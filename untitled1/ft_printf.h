@@ -23,5 +23,7 @@ int     ft_printf(const char *str, ...);
 size_t	ft_strlen(const char *c);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+char	*ft_strchr(const char *s, int c);
+
 
 #endif //UNTITLED1_FT_PRINTF_H

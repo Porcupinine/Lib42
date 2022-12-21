@@ -53,6 +53,11 @@ int main() {
     dif = printf_value - ft_prntf_value;
     printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
 
+    printf_value = printf("Testando 7 porcentagem %%%%%%%\n");
+    ft_prntf_value = ft_printf("Testando 7 porcentagem %%%%%%%\n");
+    dif = printf_value - ft_prntf_value;
+    printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+
 // ------------------CHAR-------------------------------------------------
 
     printf_value = printf("Testando char %c\n", c);
@@ -64,6 +69,11 @@ int main() {
 
     printf_value = printf("Testando string %s\n", s);
     ft_prntf_value = ft_printf("Testando string %s\n", s);
+    dif = printf_value - ft_prntf_value;
+    printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+
+    printf_value = printf("Testando string vazia %s\n", NULL);
+    ft_prntf_value = ft_printf("Testando string vazia %s\n", NULL);
     dif = printf_value - ft_prntf_value;
     printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
 

@@ -32,3 +32,25 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
 }
+
+char	*ft_strchr(const char *s, int c)
+{
+    int		count;
+    int		len;
+    char	*alias;
+    char	compare_char;
+
+    compare_char = c;
+    count = 0;
+    alias = (char *) s;
+    len = ft_strlen(s);
+    while (count < (len + 1))
+    {
+        if (alias[count] != compare_char)
+            count++;
+        else if (alias[count] == compare_char)
+            return (alias + count);
+    }
+    return (0);
+}
+

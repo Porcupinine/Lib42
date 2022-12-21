@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-void	print_result(char *conv, int count_conv, long long original)
+int print_result(char *conv, int count_conv, long long original)
 {
 	char	c;
 	int		count;
@@ -20,9 +20,15 @@ void	print_result(char *conv, int count_conv, long long original)
 	count = count_conv -1;
 	c = '-';
 	if (original < 0)
-		write(1, &c, 1);
+    {
+        count_conv++;
+        if (write(1, &c, 1) == -1)
+            return (-1);
+    }
 	while (count >= 0)
-		write(1, &(conv[count--]), 1);
+		if (write(1, &(conv[count--]), 1) == -1)
+            return (-1);
+    return (count_conv);
 }
 
 int	check_base(char *base)
@@ -66,7 +72,7 @@ int	ft_putnbr_base(long long nbr, char*base)
 	if (check_base(base) == 0)
 		return (0);
 	if (whatever < 0)
-		whatever *= (-1);
+        whatever *= (-1);
 	while (base[base_size] != '\0')
 		base_size++;
 	while (whatever >= base_size)
@@ -76,6 +82,6 @@ int	ft_putnbr_base(long long nbr, char*base)
 		conv[count_conv++] = base[leftover];
 	}
 	conv[count_conv++] = base[whatever];
-	print_result(conv, count_conv, nbr);
+	count_conv = print_result(conv, count_conv, nbr);
 	return (count_conv);
 }

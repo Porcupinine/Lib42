@@ -14,7 +14,8 @@
 
 int ft_char(int c)
 {
-	write(1, &c, 1);
+	if(write(1, &c, 1) == -1)
+        return(-1);
     return (1);
 }
 
@@ -23,9 +24,12 @@ int ft_string(char *str)
 	int char_count;
 
     char_count = 0;
+    if (str == NULL)
+        return (NULL);
 	while (str[char_count] != '\0')
 	{
-		ft_char(str[char_count]);
+		if (ft_char(str[char_count]) == -1)
+            return (-1);
 		char_count++;
 	}
     return (char_count);
