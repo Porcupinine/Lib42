@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_print_char_string.c                             :+:    :+:            */
+/*   ft_pointer.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: laura <laura@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/19 16:23:18 by laura         #+#    #+#                 */
-/*   Updated: 2022/12/19 16:23:18 by laura         ########   odam.nl         */
+/*   Created: 2022/12/20 23:16:09 by laura         #+#    #+#                 */
+/*   Updated: 2022/12/20 23:16:09 by laura         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+//#include "libft/libft.h"
+#include "ft_printf.h"
 
-int ft_char(char c)
+int ft_pointer(void *ptr)
 {
-    int char_count;
-
-    char_count =0;
-	write(1, &c, 1);
-	char_count++;
-    return (char_count);
+	char *num;
+	ft_putstr_fd("0x", 1);
+	num = ft_putnbr_base((long long)ptr, 16);
+	return (((int)ft_strlen(num) + 2));
 }
-
-int ft_string(char *str)
-{
-	int char_count;
-
-    char_count = 0;
-	while (str[char_count] != '\0')
-	{
-		ft_char(str[char_count]);
-		char_count++;
-	}
-    return (char_count);
-}
-

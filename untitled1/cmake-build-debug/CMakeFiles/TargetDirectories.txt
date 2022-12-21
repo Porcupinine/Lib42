@@ -1,3 +1,3 @@
-/Users/lpraca-l/Documents/CodamGit/untitled1/cmake-build-debug/CMakeFiles/untitled1.dir
-/Users/lpraca-l/Documents/CodamGit/untitled1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/lpraca-l/Documents/CodamGit/untitled1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/laura/Documents/Codam/untitled1/cmake-build-debug/CMakeFiles/untitled1.dir
+/home/laura/Documents/Codam/untitled1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/laura/Documents/Codam/untitled1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -33,7 +33,7 @@ Using the libtool command is forbidden.
 #include <stdarg.h>
 #include <unistd.h>
 #include "ft_printf.h"
-#include "libft-winner/libft.h"
+//#include "libft/libft.h"
 
 int ft_type(va_list content, char type)
 {
@@ -47,14 +47,19 @@ int ft_type(va_list content, char type)
     else if (type == 'p')
         char_counter += ft_pointer(va_arg(content, void*));
     else if (type == 'd' || type == 'i')
-        char_counter += ft_num(va_arg(content, int));
+//        char_counter += ft_num(va_arg(content, int));
+		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789");
     else if (type == 'u')
-        char_counter += ft_int(va_arg(content, unsigned int));
-    else if (type == 'x')
-        char_counter += ft_up_hex(va_arg(content, unsigned int));
-    else if (type == 'X')
-        char_counter += ft_lw_hex(va_arg(content, unsigned int));
-    else if (type == '%')
+//        char_counter += ft_uint(va_arg(content, unsigned int));
+		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789");
+	else if (type == 'x')
+//        char_counter += ft_up_hex(va_arg(content, unsigned int));
+		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789abcdef");
+	else if (type == 'X')
+//        char_counter += ft_lw_hex(va_arg(content, unsigned int));
+		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789ABCDEF");
+
+	else if (type == '%')
     {
         char_counter += 1;
         ft_putchar_fd(type, 1);
@@ -70,11 +75,14 @@ int ft_printf(const char *str, ...)
 
     index_counter = 0;
 	char_counter = 0;
+	va_start(content, str);
 	while (str[index_counter] != '\0')
 	{
 		if (str[index_counter] == '%')
 		{
 			char_counter += ft_type(content, str[index_counter + 1]);
+			index_counter++;
+			index_counter++;
 		}
 		else {
 			ft_putchar_fd(str[index_counter], 1);
@@ -83,5 +91,4 @@ int ft_printf(const char *str, ...)
 		}
 	}
 	return (index_counter);
-
 }

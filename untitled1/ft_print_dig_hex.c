@@ -10,95 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+//#include "libft/libft.h"
 //
-// Created by laura on 19/12/22.
+//int ft_num(int nb)
+//{
+//	char *num;
 //
-#include "libft-winner/libft.h"
-#include <unistd.h>
-// #include <stdio.h>
-
-void	print_result(char *conv, int count_conv, int original)
-{
-    char	c;
-    int		count;
-
-    count = count_conv -1;
-    c = '-';
-    if (original < 0)
-        write(1, &c, 1);
-    while (count >= 0)
-        write(1, &(conv[count--]), 1);
-}
-
-int	check_base(char *base)
-{
-    int	count;
-    int	mv_count;
-    int	base_size;
-
-    base_size = 0;
-    count = 0;
-    while (base[base_size] != '\0')
-        base_size++;
-    if (base_size < 2)
-        return (0);
-    while (base[count] != '\0')
-    {
-        if (base[count] == '-' || base[count] == '+')
-            return (0);
-        mv_count = count + 1;
-        while (base[mv_count] != '\0')
-        {
-            if (base[count] == base[mv_count++])
-                return (0);
-        }
-        count++;
-    }
-    return (1);
-}
-
-void	ft_putnbr_base(int nbr, char*base)
-{
-    int			base_size;
-    char		conv[64];
-    int			count_conv;
-    int			leftover;
-    long long	whatever;
-
-    whatever = nbr;
-    count_conv = 0;
-    base_size = 0;
-    if (check_base(base) == 0)
-        return ;
-    if (whatever < 0)
-        whatever *= (-1);
-    while (base[base_size] != '\0')
-        base_size++;
-    while (whatever >= base_size)
-    {
-        leftover = whatever % base_size;
-        whatever = whatever / base_size;
-        conv[count_conv++] = base[leftover];
-    }
-    conv[count_conv++] = base[whatever];
-    print_result(conv, count_conv, nbr);
-}
-
-int ft_num(int nb)
-{
-    char *count;
-
-    count = ft_itoa(nb);
-    ft_putstr_fd(count, 1);
-    return(ft_strlen(count));
-}
-
-int ft_up_hex(unsigned int HEX)
-{
-
-}
-
-int ft_lw_hex(unsigned int hex)
-{
-
-}
+//    num = ft_putnbr_base(nb,10);
+//	ft_putstr_fd(num, 1);
+//    return ((int)ft_strlen(num));
+//}
+//
+//int ft_up_hex(unsigned int HEX)
+//{
+//	char *num;
+//	int count;
+//
+//	num = ft_putnbr_base(HEX,16);
+//	while (num[count] != '\0')
+//	{
+//		num[count] = ft_toupper(num[count]);
+//		count++;
+//	}
+//	ft_putstr_fd(num, 1);
+//	return ((int)ft_strlen(num));
+//}
+//
+//int ft_lw_hex(unsigned int hex)
+//{
+//	char *num;
+//
+//	num = ft_putnbr_base(hex,16);
+//	return ((int)ft_strlen(num));
+//}
+//
+//int ft_uint(unsigned int nb)
+//{
+//	char *num;
+//
+//	num = ft_putnbr_base(nb,10);
+//	ft_putstr_fd(num, 1);
+//	return ((int)ft_strlen(num));
+//}

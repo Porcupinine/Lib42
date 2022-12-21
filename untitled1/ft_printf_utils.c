@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_print_char_string.c                             :+:    :+:            */
+/*   ft_printf_utils.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: laura <laura@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/19 16:23:18 by laura         #+#    #+#                 */
-/*   Updated: 2022/12/19 16:23:18 by laura         ########   odam.nl         */
+/*   Created: 2022/12/21 08:51:56 by laura         #+#    #+#                 */
+/*   Updated: 2022/12/21 08:51:56 by laura         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stddef.h>
 
-int ft_char(char c)
+size_t	ft_strlen(const char *c)
 {
-    int char_count;
+	size_t	count;
 
-    char_count =0;
-	write(1, &c, 1);
-	char_count++;
-    return (char_count);
+	count = 0;
+	while (c[count] != '\0')
+		count++;
+	return (count);
 }
 
-int ft_string(char *str)
+void	ft_putchar_fd(char c, int fd)
 {
-	int char_count;
-
-    char_count = 0;
-	while (str[char_count] != '\0')
-	{
-		ft_char(str[char_count]);
-		char_count++;
-	}
-    return (char_count);
+	write(fd, &c, 1);
 }
 
+void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
+}
