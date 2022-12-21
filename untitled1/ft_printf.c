@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_pritf.c                                         :+:    :+:            */
+/*   ft_printf.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: laura <laura@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/19 14:34:18 by laura         #+#    #+#                 */
-/*   Updated: 2022/12/19 14:34:18 by laura         ########   odam.nl         */
+/*   Updated: 2022/12/21 17:35:57 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,56 +33,57 @@ Using the libtool command is forbidden.
 #include <stdarg.h>
 #include "ft_printf.h"
 
-int ft_type(va_list content, char type)
+int	ft_type(va_list content, char type)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (type == '%')
-        i += ft_putchar_fd(type, 1);
-    else if (type == 'c')
-        i += ft_char(va_arg(content, int));
-    else if (type == 's')
-        i += ft_string(va_arg(content, char*));
-    else if (type == 'p')
-        i += ft_pointer(va_arg(content, unsigned long long));
-    else if (type == 'd' || type == 'i')
+	i = 0;
+	if (type == '%')
+		i += ft_putchar_fd(type, 1);
+	else if (type == 'c')
+		i += ft_char(va_arg(content, int));
+	else if (type == 's')
+		i += ft_string(va_arg(content, char *));
+	else if (type == 'p')
+		i += ft_pointer(va_arg(content, unsigned long long));
+	else if (type == 'd' || type == 'i')
 		i += ft_putnbr_base(va_arg(content, int), "0123456789");
-    else if (type == 'u')
+	else if (type == 'u')
 		i += ft_putnbr_base(va_arg(content, unsigned int), "0123456789");
-    else if (type == 'x')
-		i += ft_putnbr_base_ulong(va_arg(content, unsigned int), "0123456789abcdef");
-    else if (type == 'X')
-		i += ft_putnbr_base_ulong(va_arg(content, unsigned int), "0123456789ABCDEF");
-    else
-        return (0);
-    return (i);
+	else if (type == 'x')
+		i += ft_putnbr_ulong(va_arg(content, unsigned int), "0123456789abcdef");
+	else if (type == 'X')
+		i += ft_putnbr_ulong(va_arg(content, unsigned int), "0123456789ABCDEF");
+	else
+		return (0);
+	return (i);
 }
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	int     i;
-    int     char_counter;
-	va_list content;
+	int		i;
+	int		char_counter;
+	va_list	content;
 
-    i = 0;
+	i = 0;
 	char_counter = 0;
 	va_start(content, str);
 	while (str[i] != '\0')
 	{
-        if (str[i] == '%' && !ft_strchr("cspdiuxX%", str[i +1]))
-           i++;
+		if (str[i] == '%' && !ft_strchr("cspdiuxX%", str[i +1]))
+			i++;
 		if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i +1]))
 		{
 			char_counter += ft_type(content, str[i + 1]);
 			i += 2;
 		}
-		else {
+		else
+		{
 			ft_putchar_fd(str[i], 1);
 			i++;
-            char_counter++;
+			char_counter++;
 		}
 	}
-    va_end(content);
+	va_end(content);
 	return (char_counter);
 }
