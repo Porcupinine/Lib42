@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include "ft_printf.h"
+#include <limits.h>
 
 int main() {
 
@@ -96,10 +97,20 @@ int main() {
     dif = printf_value - ft_prntf_value;
     printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
 
+    printf_value = printf("Testando endereço %p\n", ULONG_MAX);
+    ft_prntf_value = ft_printf("Testando endereço %p\n", ULONG_MAX);
+    dif = printf_value - ft_prntf_value;
+    printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+
 // ------------------LOW HEXA-------------------------------------------------
 
     printf_value = printf("Testando hexa %x \n", d);
     ft_prntf_value = ft_printf("Testando hexa %x \n", d);
+    dif = printf_value - ft_prntf_value;
+    printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+
+    printf_value = printf("Testando hexa %x \n", ULONG_MAX);
+    ft_prntf_value = ft_printf("Testando hexa %x \n", ULONG_MAX);
     dif = printf_value - ft_prntf_value;
     printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
 
@@ -117,12 +128,24 @@ int main() {
     dif = printf_value - ft_prntf_value;
     printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
 
-// ------------------MISC-------------------------------------------------
-
-    printf_value = printf("Testando HEXA %X com hexa %x com char %c com endereço %p\n", d, d, c, c);
-    ft_prntf_value =  ft_printf("Testando HEXA %X com hexa %x com char %c com endereço %p\n", d, d, c, c);
+    printf_value = printf("Testando unssigned int %u\n", LONG_MAX);
+    ft_prntf_value = ft_printf("Testando unssigned int %u\n", LONG_MAX);
     dif = printf_value - ft_prntf_value;
     printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+
+// ------------------MISC-------------------------------------------------
+
+    printf_value = printf("%k\n");
+    ft_prntf_value =  ft_printf("%k\n");
+    dif = printf_value - ft_prntf_value;
+    printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+
+    printf_value = printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+    ft_prntf_value =  ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+    dif = printf_value - ft_prntf_value;
+    printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+
+
 
     return 0;
 }

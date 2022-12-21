@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 size_t	ft_strlen(const char *c)
 {
@@ -23,9 +24,10 @@ size_t	ft_strlen(const char *c)
 	return (count);
 }
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
+    return (1);
 }
 
 void	ft_putstr_fd(char *s, int fd)
@@ -52,5 +54,23 @@ char	*ft_strchr(const char *s, int c)
             return (alias + count);
     }
     return (0);
+}
+
+char	*ft_strdup(const char *s1)
+{
+    char	*dup;
+    int		count;
+
+    count = 0;
+    dup = malloc((ft_strlen(s1) + 1) * (sizeof(char)));
+    if (dup == NULL)
+        return (NULL);
+    while (s1[count] != '\0')
+    {
+        dup[count] = s1[count];
+        count++;
+    }
+    dup[count] = '\0';
+    return (dup);
 }
 

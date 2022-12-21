@@ -82,6 +82,12 @@ build CMakeFiles/untitled1.dir/ft_printf_utils.c.o: C_COMPILER__untitled1_Debug 
   OBJECT_DIR = CMakeFiles/untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled1.dir
 
+build CMakeFiles/untitled1.dir/ft_putnbr_base_ulong.c.o: C_COMPILER__untitled1_Debug /Users/lpraca-l/Documents/CodamGit/untitled1/ft_putnbr_base_ulong.c || cmake_object_order_depends_target_untitled1
+  DEP_FILE = CMakeFiles/untitled1.dir/ft_putnbr_base_ulong.c.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
+  OBJECT_DIR = CMakeFiles/untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles/untitled1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled1
@@ -90,7 +96,7 @@ build CMakeFiles/untitled1.dir/ft_printf_utils.c.o: C_COMPILER__untitled1_Debug 
 #############################################
 # Link the executable untitled1
 
-build untitled1: C_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.c.o CMakeFiles/untitled1.dir/ft_printf.c.o CMakeFiles/untitled1.dir/ft_print_char_string.c.o CMakeFiles/untitled1.dir/ft_pointer.c.o CMakeFiles/untitled1.dir/ft_putnbr_base.c.o CMakeFiles/untitled1.dir/ft_printf_utils.c.o
+build untitled1: C_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.c.o CMakeFiles/untitled1.dir/ft_printf.c.o CMakeFiles/untitled1.dir/ft_print_char_string.c.o CMakeFiles/untitled1.dir/ft_pointer.c.o CMakeFiles/untitled1.dir/ft_putnbr_base.c.o CMakeFiles/untitled1.dir/ft_printf_utils.c.o CMakeFiles/untitled1.dir/ft_putnbr_base_ulong.c.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14
   OBJECT_DIR = CMakeFiles/untitled1.dir
   POST_BUILD = :

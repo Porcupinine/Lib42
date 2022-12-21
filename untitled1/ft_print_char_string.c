@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "ft_printf.h"
 
 int ft_char(int c)
 {
@@ -25,7 +26,10 @@ int ft_string(char *str)
 
     char_count = 0;
     if (str == NULL)
-        return (NULL);
+    {
+        write (1, "(null)", 6);
+        return (6);
+    }
 	while (str[char_count] != '\0')
 	{
 		if (ft_char(str[char_count]) == -1)

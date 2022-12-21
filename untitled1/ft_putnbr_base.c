@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-int print_result(char *conv, int count_conv, long long original)
+static int print_result(char *conv, int count_conv, long long original)
 {
 	char	c;
 	int		count;
@@ -31,7 +31,7 @@ int print_result(char *conv, int count_conv, long long original)
     return (count_conv);
 }
 
-int	check_base(char *base)
+static int	check_base(char *base)
 {
 	int	count;
 	int	mv_count;

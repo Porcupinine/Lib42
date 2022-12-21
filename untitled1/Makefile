@@ -4,7 +4,8 @@ SRC= ft_printf.c \
 ft_print_char_string.c \
 ft_putnbr_base.c \
 ft_printf_utils.c \
-ft_pointer.c
+ft_pointer.c \
+ft_putnbr_base_ulong.c
 
 #SRCBONUS=
 
