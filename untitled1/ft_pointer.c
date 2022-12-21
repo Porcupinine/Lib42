@@ -15,8 +15,10 @@
 
 int ft_pointer(void *ptr)
 {
-	char *num;
-	ft_putstr_fd("0x", 1);
-	num = ft_putnbr_base((long long)ptr, 16);
-	return (((int)ft_strlen(num) + 2));
+    int count;
+
+    count = 2;
+    ft_putstr_fd("0x", 1);
+	count += ft_putnbr_base((long long)ptr, "0123456789abcdef");
+	return (count);
 }

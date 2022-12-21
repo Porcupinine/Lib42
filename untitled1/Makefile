@@ -2,18 +2,19 @@ NAME=libftprintf.a
 
 SRC= ft_printf.c \
 ft_print_char_string.c \
-ft_putnbr_bas.c \
-ft_printf_utils.c
+ft_putnbr_base.c \
+ft_printf_utils.c \
+ft_pointer.c
 
-SRCBONUS=
+#SRCBONUS=
 
 
 OBJS_DIR = build/
 OBJS = $(SRC:.c=.o)
 OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-OBJSB = $(SRCBONUS:.c=.o)
-OBJECTS_BONUS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJSB))
+#OBJSB = $(SRCBONUS:.c=.o)
+#OBJECTS_BONUS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJSB))
 
 CFLAGS += -g -Wall -Werror -Wextra -O0
 
@@ -37,6 +38,6 @@ fclean: clean
 
 re: fclean all
 
-bonus : $(OBJECTS_BONUS_PREFIXED)
-		@ar r $(NAME) $(OBJECTS_BONUS_PREFIXED)
-		@echo "Bonus ready!"
+#bonus : $(OBJECTS_BONUS_PREFIXED)
+#		@ar r $(NAME) $(OBJECTS_BONUS_PREFIXED)
+#		@echo "Bonus ready!"

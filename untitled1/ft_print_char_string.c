@@ -12,14 +12,10 @@
 
 #include <unistd.h>
 
-int ft_char(char c)
+int ft_char(int c)
 {
-    int char_count;
-
-    char_count =0;
 	write(1, &c, 1);
-	char_count++;
-    return (char_count);
+    return (1);
 }
 
 int ft_string(char *str)

@@ -31,46 +31,39 @@ Using the libtool command is forbidden.
  */
 
 #include <stdarg.h>
-#include <unistd.h>
 #include "ft_printf.h"
-//#include "libft/libft.h"
 
 int ft_type(va_list content, char type)
 {
-    int char_counter;
+    int i;
 
-    char_counter = 0;
+    i = 0;
     if (type == 'c')
-        char_counter += ft_char(va_arg(content, char));
+        i += ft_char(va_arg(content, int));
     else if (type == 's')
-        char_counter += ft_string(va_arg(content, char*));
+        i += ft_string(va_arg(content, char*));
     else if (type == 'p')
-        char_counter += ft_pointer(va_arg(content, void*));
+        i += ft_pointer(va_arg(content, void*));
     else if (type == 'd' || type == 'i')
-//        char_counter += ft_num(va_arg(content, int));
-		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789");
+		i += ft_putnbr_base(va_arg(content, long long), "0123456789");
     else if (type == 'u')
-//        char_counter += ft_uint(va_arg(content, unsigned int));
-		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789");
-	else if (type == 'x')
-//        char_counter += ft_up_hex(va_arg(content, unsigned int));
-		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789abcdef");
-	else if (type == 'X')
-//        char_counter += ft_lw_hex(va_arg(content, unsigned int));
-		char_counter += ft_putnbr_base(va_arg(content, long long), "0123456789ABCDEF");
-
-	else if (type == '%')
+		i += ft_putnbr_base(va_arg(content, unsigned long long), "0123456789");
+    else if (type == 'x')
+		i += ft_putnbr_base(va_arg(content, long long), "0123456789abcdef");
+    else if (type == 'X')
+		i += ft_putnbr_base(va_arg(content, long long), "0123456789ABCDEF");
+    else if (type == '%')
     {
-        char_counter += 1;
+        i++;
         ft_putchar_fd(type, 1);
     }
-    return (char_counter);
+    return (i);
 }
 
 int ft_printf(const char *str, ...)
 {
-	int index_counter;
-    int char_counter;
+	int     index_counter;
+    int     char_counter;
 	va_list content;
 
     index_counter = 0;
@@ -90,5 +83,5 @@ int ft_printf(const char *str, ...)
             char_counter++;
 		}
 	}
-	return (index_counter);
+	return (char_counter);
 }
