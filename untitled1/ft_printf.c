@@ -58,32 +58,37 @@ int	ft_type(va_list content, char type)
 		return (0);
 	return (i);
 }
+int real_printf(const char *str, va_list content)
+{
+    int char_counter;
+    int i;
+
+    i = 0;
+    char_counter = 0;
+    while (str[i]) {
+        if (str[i] == '%' && str[i + 1] == '\0')
+            break;
+        if (str[i] == '%' && !ft_strchr("cspdiuxX%", str[i + 1]))
+            i++;
+        else if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i + 1])) {
+            char_counter += ft_type(content, str[i + 1]);
+            i += 2;
+        } else {
+            i += ft_putchar_fd(str[i], 1);
+            char_counter++;
+        }
+    }
+    return(char_counter);
+}
 
 int	ft_printf(const char *str, ...)
 {
-	int		i;
 	int		char_counter;
 	va_list	content;
 
-	i = 0;
 	char_counter = 0;
 	va_start(content, str);
-	while (str[i] != '\0')
-	{
-		if (str[i] == '%' && !ft_strchr("cspdiuxX%", str[i +1]))
-			i++;
-		if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i +1]))
-		{
-			char_counter += ft_type(content, str[i + 1]);
-			i += 2;
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			i++;
-			char_counter++;
-		}
-	}
+    char_counter = real_printf(str, content);
 	va_end(content);
 	return (char_counter);
 }
