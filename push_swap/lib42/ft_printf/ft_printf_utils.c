@@ -6,7 +6,7 @@
 /*   By: laura <laura@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/21 08:51:56 by laura         #+#    #+#                 */
-/*   Updated: 2023/01/17 16:26:09 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2023/01/23 18:29:32 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+/**
+ * @brief gets the size of a string
+ * 
+ * @param c string
+ * @return size_t size of string
+ */
 size_t	ft_strlen(const char *c)
 {
 	size_t	count;
@@ -24,17 +30,13 @@ size_t	ft_strlen(const char *c)
 	return (count);
 }
 
-int	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-	return (1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
-}
-
+/**
+ * @brief checks for a char in a string
+ * 
+ * @param s string to be checked
+ * @param c char to be found
+ * @return char* adress of first occurance or 0 if none is found
+ */
 char	*ft_strchr(const char *s, int c)
 {
 	int		count;

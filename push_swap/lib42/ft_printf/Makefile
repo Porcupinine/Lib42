@@ -16,7 +16,7 @@ CC= gcc
 
 $(OBJS_DIR)%.o : %.c ft_printf.h
 	@mkdir -p $(OBJS_DIR)
-	@echo "Compiling: $<"
+# @echo "Compiling: $<"
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
@@ -27,10 +27,10 @@ $(NAME) : $(OBJECTS_PREFIXED)
 all: $(NAME)
 
 clean:
-	rm -rf build
+	@rm -rf build
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 

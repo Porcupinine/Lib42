@@ -6,7 +6,7 @@
 /*   By: laura <laura@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/19 14:34:18 by laura         #+#    #+#                 */
-/*   Updated: 2023/01/17 14:39:50 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2023/01/23 18:24:56 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,20 @@ Using the libtool command is forbidden.
 #include <stdarg.h>
 #include "ft_printf.h"
 
-int	ft_type(va_list content, char type)
+/**
+ * @brief checks flag to be printed and decide how to proceed
+ * 
+ * @param content content of the list
+ * @param type flag to be printed
+ * @return int i = how many characters were printed
+ */
+static int	ft_type(va_list content, char type)
 {
 	int	i;
 
 	i = 0;
 	if (type == '%')
-		i += ft_putchar_fd(type, 1);
+		i += ft_char(type);
 	else if (type == 'c')
 		i += ft_char(va_arg(content, int));
 	else if (type == 's')
@@ -59,13 +66,21 @@ int	ft_type(va_list content, char type)
 	return (i);
 }
 
-int	real_printf(const char *str, va_list content, int ret)
+/**
+ * @brief looks for % followed by flags, in case a percentage is not followed 
+ * by a valid flag, skips the percentage sing and keep going on. If no pecentage
+ * is found, just print the current char.
+ * 
+ * @param str string to be printed
+ * @param content list were content is stored
+ * @param ret amount of chars read on type function
+ * @return int char_count = how many chars have been printed 
+ */
+static int	real_printf(const char *str, va_list content, int ret, int c_count)
 {
-	int	char_counter;
 	int	i;
 
 	i = 0;
-	char_counter = 0;
 	while (str[i])
 	{
 		if (str[i] == '%' && !ft_strchr("cspdiuxX%", str[i + 1]))
@@ -75,16 +90,19 @@ int	real_printf(const char *str, va_list content, int ret)
 			ret = ft_type(content, str[i + 1]);
 			if (ret == (-1))
 				return (-1);
-			char_counter += ret;
+			c_count += ret;
 			i += 2;
 		}
 		else
 		{
-			i += ft_putchar_fd(str[i], 1);
-			char_counter++;
+			ret = ft_char(str[i]);
+			if (ret == (-1))
+				return (-1);
+			i++;
+			c_count++;
 		}
 	}
-	return (char_counter);
+	return (c_count);
 }
 
 int	ft_printf(const char *str, ...)
@@ -94,7 +112,7 @@ int	ft_printf(const char *str, ...)
 
 	char_counter = 0;
 	va_start(content, str);
-	char_counter = real_printf(str, content, 0);
+	char_counter = real_printf(str, content, 0, char_counter);
 	va_end(content);
 	return (char_counter);
 }
