@@ -160,7 +160,11 @@ int main() {
     dif = printf_value - ft_prntf_value;
     printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
 
-
+    printf_value = printf("pintf\0458\n");
+    ft_prntf_value = ft_printf("ft_printf\0458\n");
+    dif = printf_value - ft_prntf_value;
+    printf("printf= %d ft_printf= %d  dif= %d\n\n", printf_value, ft_prntf_value, dif);
+    return 0;
 
     return 0;
 }

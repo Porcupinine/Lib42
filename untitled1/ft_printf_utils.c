@@ -46,7 +46,7 @@ char	*ft_strchr(const char *s, int c)
 	count = 0;
 	alias = (char *) s;
 	len = ft_strlen(s);
-	while (count < (len + 1))
+	while (count < (len))
 	{
 		if (alias[count] != compare_char)
 			count++;
