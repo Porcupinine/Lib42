@@ -15,4 +15,12 @@
 #ifndef PUSH_SWAP_PUSSH_SWAP_H
 #define PUSH_SWAP_PUSSH_SWAP_H
 
+# include <ctype.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
 #endif //PUSH_SWAP_PUSSH_SWAP_H

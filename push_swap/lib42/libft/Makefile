@@ -33,9 +33,8 @@ ft_tolower.c \
 ft_toupper.c \
 ft_strmapi.c \
 ft_striteri.c \
-ft_memchr.c
-
-SRCBONUS= ft_lstnew.c \
+ft_memchr.c \
+ft_lstnew.c \
 ft_lstadd_front.c \
 ft_lstsize.c \
 ft_lstlast.c \
@@ -50,34 +49,29 @@ OBJS_DIR = build/
 OBJS = $(SRC:.c=.o)
 OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
-OBJSB = $(SRCBONUS:.c=.o)
-OBJECTS_BONUS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJSB))
-
 CFLAGS += -g -Wall -Werror -Wextra -O0
+
+CC = gcc
 
 $(OBJS_DIR)%.o : %.c libft.h
 	@mkdir -p $(OBJS_DIR)
-	@echo "Compiling: $<"
+#	@echo "Compiling: $<"
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
 $(NAME) : $(OBJECTS_PREFIXED)
-	@ar r $(NAME) $(OBJECTS_PREFIXED)
+	@ar -rcs $(NAME) $(OBJECTS_PREFIXED)
 	@echo "Libft ready!"
 
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJECTS_PREFIXED)
+	@rm -rf /build
+	@echo "Done!"
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
-clean_test: fclean
-	rm testall test.o
-
-bonus : $(OBJECTS_BONUS_PREFIXED)
-		@ar r $(NAME) $(OBJECTS_BONUS_PREFIXED)
-		@echo "Bonus ready!"
+.PHONY: all clean fclean re

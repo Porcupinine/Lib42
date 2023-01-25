@@ -17,7 +17,7 @@ CC= gcc
 $(OBJS_DIR)%.o : %.c ft_printf.h
 	@mkdir -p $(OBJS_DIR)
 # @echo "Compiling: $<"
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 
 $(NAME) : $(OBJECTS_PREFIXED)
