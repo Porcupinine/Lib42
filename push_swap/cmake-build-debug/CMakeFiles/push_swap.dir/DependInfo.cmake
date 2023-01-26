@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/sam/Codamgit/push_swap/main.c" "CMakeFiles/push_swap.dir/main.c.o" "gcc" "CMakeFiles/push_swap.dir/main.c.o.d"
-  "/sam/Codamgit/push_swap/pussh_swap.c" "CMakeFiles/push_swap.dir/pussh_swap.c.o" "gcc" "CMakeFiles/push_swap.dir/pussh_swap.c.o.d"
+  "/Users/lpraca-l/Documents/CodamGit/push_swap/main.c" "CMakeFiles/push_swap.dir/main.c.o" "gcc" "CMakeFiles/push_swap.dir/main.c.o.d"
+  "/Users/lpraca-l/Documents/CodamGit/push_swap/pussh_swap.c" "CMakeFiles/push_swap.dir/pussh_swap.c.o" "gcc" "CMakeFiles/push_swap.dir/pussh_swap.c.o.d"
   )
 
 # Targets to which this target links.
