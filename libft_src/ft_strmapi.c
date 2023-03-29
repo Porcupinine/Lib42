@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Applies the function ’f’ to each character of the
-string ’s’, and passing its index as first argument
-to create a new string (with malloc(3)) resulting
-from successive applications of ’f’.
+/*Applies the function ’f’ on each character of
+the string passed as argument, passing its index
+as first argument. Each character is passed by
+address to ’f’ to be modified if necessary.
 returns The string created from the successive applications
 of ’f’. Returns NULL if the allocation fails.*/
 

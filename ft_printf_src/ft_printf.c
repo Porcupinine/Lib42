@@ -32,6 +32,7 @@ Using the libtool command is forbidden.
 
 #include <stdarg.h>
 #include "ft_printf.h"
+#include "libft.h"
 
 /**
  * @brief checks flag to be printed and decide how to proceed
