@@ -7,3 +7,5 @@ get_next_line/.vscode
 .vscode/
 get_next_line/cmake-build-debug
 get_next_line/.idea
+**.a
+build/
