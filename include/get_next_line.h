@@ -63,4 +63,5 @@ char	*ft_strlcpy_gnl(const char	*src, long dst_size);
  */
 int		ft_strlen_gnl(const char *c);
 
+void	ft_bzero_gnl(void *s, size_t n);
 #endif

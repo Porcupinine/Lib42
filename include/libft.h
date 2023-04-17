@@ -355,5 +355,9 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  * @return pointer do char or 0 if nothing is found
  */
 void	*ft_memchr(const void *s, int c, size_t n);
-
+/**
+ * prints error message and quits
+ * @param error
+ */
+void	ft_error(char *error);
 #endif

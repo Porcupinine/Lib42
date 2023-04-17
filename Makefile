@@ -2,7 +2,7 @@ NAME=libft.a
 
 INCLUDE := include
 
-SRC= libft_src/ft_atoi.c libft_src/ft_bzero.c libft_src/ft_calloc.c libft_src/ft_isalnum.c libft_src/ft_isalpha.c libft_src/ft_isascii.c \
+SRC= libft_src/ft_error.c libft_src/ft_atoi.c libft_src/ft_bzero.c libft_src/ft_calloc.c libft_src/ft_isalnum.c libft_src/ft_isalpha.c libft_src/ft_isascii.c \
 libft_src/ft_isdigit.c libft_src/ft_isprint.c libft_src/ft_itoa.c libft_src/ft_memcmp.c libft_src/ft_memcpy.c libft_src/ft_memmove.c \
 libft_src/ft_memset.c libft_src/ft_putchar_fd.c libft_src/ft_putendl_fd.c libft_src/ft_putnbr_fd.c libft_src/ft_putstr_fd.c libft_src/ft_split.c libft_src/ft_strchr.c \
 libft_src/ft_strdup.c libft_src/ft_strjoin.c libft_src/ft_strlcat.c libft_src/ft_strlcpy.c libft_src/ft_strlen.c libft_src/ft_strncmp.c libft_src/ft_strnstr.c \
