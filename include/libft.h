@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lplacerdadesign@gmail.com>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/09 19:47:08 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2022/10/31 18:26:00 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2023/05/23 15:14:27 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,9 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 /**
  * The memmove() function copies n bytes from memory area src to
  * memory area dest.The memory areas may overlap:copying takes place as though
- * the bytes in src are first copied into a temporary array that does  not  overlap
- * src or dest, and the bytes are then copied from the temporary array to dest.
+ * the bytes in src are first copied into a temporary array that does  not 
+ * overlap src or dest, and the bytes are then copied from the temporary 
+ * array to dest.
  * @param dest dest mem area
  * @param src src mem area
  * @param n how much to copy
