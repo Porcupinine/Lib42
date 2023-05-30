@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 19:17:01 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2023/01/23 17:35:48 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2023/05/30 12:25:03 by lpraca-l      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ char	*get_next_line(int fd)
 			if (buff_len == 0)
 				return (lines);
 			if (buff_len < 0)
-				return (free(lines), NULL);
+				exit(1);
 			len = 0;
 		}
 		if (buff_len > 0)
