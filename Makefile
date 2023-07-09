@@ -10,7 +10,7 @@ libft_src/ft_strrchr.c libft_src/ft_strtrim.c libft_src/ft_substr.c libft_src/ft
 libft_src/ft_memchr.c libft_src/ft_lstnew.c libft_src/ft_lstadd_front.c libft_src/ft_lstsize.c libft_src/ft_lstlast.c \
 libft_src/ft_lstadd_back.c libft_src/ft_lstdelone.c libft_src/ft_lstclear.c libft_src/ft_lstiter.c libft_src/ft_lstmap.c \
 ft_printf_src/ft_printf.c ft_printf_src/ft_print_char_string.c ft_printf_src/ft_putnbr_base.c ft_printf_src/ft_pointer.c ft_printf_src/ft_putnbr_ulong.c \
-get_next_line_src/get_next_line.c get_next_line_src/get_next_line_utils.c \
+get_next_line_src/get_next_line.c get_next_line_src/get_next_line_utils.c libft_src/ft_charjoin.c \
 
 OBJS_DIR = build/
 OBJS_DIR2 = build/libft_src

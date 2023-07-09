@@ -361,4 +361,11 @@ void	*ft_memchr(const void *s, int c, size_t n);
  * @param error
  */
 void	ft_error(char *error);
+/**
+ * Appends a new char to a string
+ * @param s1 string
+ * @param c char to add
+ * @return new string
+ */
+char	*append_char(char const *s1, char const c);
 #endif
