@@ -1,52 +1,60 @@
-NAME=libft.a
+#--------------------------------------------------------------------Executable
+NAME	:= libft.a
 
-INCLUDE := include
+#----------------------------------------------------------------------Compiler
+CC 		=  -gcc
 
-SRC= libft_src/ft_error.c libft_src/ft_atoi.c libft_src/ft_bzero.c libft_src/ft_calloc.c libft_src/ft_isalnum.c libft_src/ft_isalpha.c libft_src/ft_isascii.c \
-libft_src/ft_isdigit.c libft_src/ft_isprint.c libft_src/ft_itoa.c libft_src/ft_memcmp.c libft_src/ft_memcpy.c libft_src/ft_memmove.c \
-libft_src/ft_memset.c libft_src/ft_putchar_fd.c libft_src/ft_putendl_fd.c libft_src/ft_putnbr_fd.c libft_src/ft_putstr_fd.c libft_src/ft_split.c libft_src/ft_strchr.c \
-libft_src/ft_strdup.c libft_src/ft_strjoin.c libft_src/ft_strlcat.c libft_src/ft_strlcpy.c libft_src/ft_strlen.c libft_src/ft_strncmp.c libft_src/ft_strnstr.c \
-libft_src/ft_strrchr.c libft_src/ft_strtrim.c libft_src/ft_substr.c libft_src/ft_tolower.c libft_src/ft_toupper.c libft_src/ft_strmapi.c libft_src/ft_striteri.c \
-libft_src/ft_memchr.c libft_src/ft_lstnew.c libft_src/ft_lstadd_front.c libft_src/ft_lstsize.c libft_src/ft_lstlast.c \
-libft_src/ft_lstadd_back.c libft_src/ft_lstdelone.c libft_src/ft_lstclear.c libft_src/ft_lstiter.c libft_src/ft_lstmap.c \
-ft_printf_src/ft_printf.c ft_printf_src/ft_print_char_string.c ft_printf_src/ft_putnbr_base.c ft_printf_src/ft_pointer.c ft_printf_src/ft_putnbr_ulong.c \
-get_next_line_src/get_next_line.c get_next_line_src/get_next_line_utils.c libft_src/ft_charjoin.c \
+#-------------------------------------------------------------------------Flags
+CFLAGS	+= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+ASANFLAGS += -fsanitize=address -fsanitize=leak
 
-OBJS_DIR = build/
-OBJS_DIR2 = build/libft_src
-OBJS_DIR3 = build/get_next_line_src
-OBJS_DIR4 = build/ft_printf_src
-OBJS = $(SRC:.c=.o)
-OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
+#-----------------------------------------------------------------------Headers
+HEADERS	:= -I ./include
 
-CFLAGS += -g -Wall -Werror -Wextra -O0
+#------------------------------------------------------------------------Source
+SRC     := libft/ft_error.c libft/ft_atoi.c libft/ft_bzero.c \
+libft/ft_calloc.c libft/ft_isalnum.c libft/ft_isalpha.c \
+libft/ft_isascii.c libft/ft_isdigit.c libft/ft_isprint.c \
+libft/ft_itoa.c libft/ft_memcmp.c libft/ft_memcpy.c \
+libft/ft_memmove.c libft/ft_memset.c libft/ft_putchar_fd.c \
+libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_putstr_fd.c \
+libft/ft_split.c libft/ft_strchr.c libft/ft_strdup.c \
+libft/ft_strjoin.c libft/ft_strlcat.c libft/ft_strlcpy.c \
+libft/ft_strlen.c libft/ft_strncmp.c libft/ft_strnstr.c \
+libft/ft_strrchr.c libft/ft_strtrim.c libft/ft_substr.c \
+libft/ft_tolower.c libft/ft_toupper.c libft/ft_strmapi.c \
+libft/ft_striteri.c libft/ft_memchr.c libft/ft_lstnew.c \
+libft/ft_lstadd_front.c libft/ft_lstsize.c libft/ft_lstlast.c \
+libft/ft_lstadd_back.c libft/ft_lstdelone.c libft/ft_lstclear.c \
+libft/ft_lstiter.c ft_printf/ft_printf.c \
+ft_printf/ft_print_char_string.c ft_printf/ft_putnbr_base.c \
+ft_printf/ft_pointer.c ft_printf/ft_putnbr_ulong.c \
+get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+libft/ft_charjoin.c 
 
-CC = gcc
+#-----------------------------------------------------------------------Objects
+OBJS	:= ${SRC:.c=.o}
 
-$(OBJS_DIR)%.o : %.c
-	@mkdir -p $(OBJS_DIR)
-	@mkdir -p $(OBJS_DIR2)
-	@mkdir -p $(OBJS_DIR3)
-	@mkdir -p $(OBJS_DIR4)
-# @echo "Compiling: $<"
-	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+#---------------------------------------------------------------------Directory
+OBJ_DIR := objs/
+OBJECTS_PREFIXED := $(addprefix $(OBJ_DIR), $(OBJS))
 
-
-$(NAME) : $(OBJECTS_PREFIXED)
-	@ar r $(NAME) $(OBJECTS_PREFIXED)
-	@echo "Libft ready!"
-
+#-------------------------------------------------------------------------Rules
 all: $(NAME)
 
+$(OBJ_DIR)%.o : %.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+
+$(NAME): $(OBJECTS_PREFIXED)
+	@ar r $(NAME) $(OBJECTS_PREFIXED)
+
 clean:
-	@rm -rf $(OBJECTS_PREFIXED)
-	@echo "Clean!"
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@rm -rf build
-	@rm -f libft.a
-#	@echo "Clean!"
+	@rm -f $(NAME)
 
-re: fclean all
+re: clean all
 
-.PHONY: all clean fclean re 
+.PHONY: all, clean, fclean, re, libmlx lib42_build
