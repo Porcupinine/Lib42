@@ -133,7 +133,7 @@ static long	get_the_line(char *buff, char **lines, long buff_len, long *len)
 	return (ret);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_exit(int fd)
 {
 	static char		buff[BUFFER_SIZE];
 	char			*lines;
