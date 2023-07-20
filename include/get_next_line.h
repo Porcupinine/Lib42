@@ -6,7 +6,7 @@
 /*   By: lpraca-l <lpraca-l@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 19:18:21 by lpraca-l      #+#    #+#                 */
-/*   Updated: 2023/01/23 17:37:22 by lpraca-l      ########   odam.nl         */
+/*   Updated: 2023/07/20 12:07:28 by laura         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2, long buff_len);
  * read, or an error occurred
  */
 char	*get_next_line(int fd);
+
+char	*get_next_line_exit(int fd);
 
 /**
  * @brief strlcpy() and strlcat() functions copy and concatenate strings with
